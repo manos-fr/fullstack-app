@@ -14,12 +14,14 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
-
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
@@ -36,6 +38,7 @@ import { AppComponent } from './app.component';
         InputTextareaModule,
         RadioButtonModule,
         ButtonModule,
+        AppRoutingModule,
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
