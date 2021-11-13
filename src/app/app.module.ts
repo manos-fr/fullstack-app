@@ -14,17 +14,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
-<<<<<<< HEAD
 import {SidebarModule} from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import {MenubarModule} from 'primeng/menubar';
-=======
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
->>>>>>> f00be2dac622c739fcff402e492a6193380237e9
 
 @NgModule({
     declarations: [
