@@ -47,12 +47,9 @@ import { HomeComponent } from './home/home.component';
         RadioButtonModule,
         ButtonModule,
         AppRoutingModule,
-<<<<<<< HEAD
         SidebarModule,
         MenubarModule,
         
-=======
->>>>>>> f00be2dac622c739fcff402e492a6193380237e9
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
