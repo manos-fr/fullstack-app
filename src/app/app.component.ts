@@ -27,7 +27,7 @@ export class AppComponent {
                             {label: 'Other'},
                         ]
                     },
-                    {label: 'Navigate',
+                    {label: 'HomeScreen',
                     routerLink: '/home'},  
                     {label: 'Quit', 
                     command: () => {
