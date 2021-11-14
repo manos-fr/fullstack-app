@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import {MenubarModule} from 'primeng/menubar';
+import { ProductService } from './services/productservice';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,7 @@ import {MenubarModule} from 'primeng/menubar';
         MenubarModule,
         
     ],
-    providers: [ConfirmationService],
+    providers: [ProductService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

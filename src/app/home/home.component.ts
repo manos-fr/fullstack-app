@@ -24,11 +24,14 @@ export class HomeComponent implements OnInit {
 
   statuses: any[];
 
-  constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(
+      public productService: ProductService, 
+      private messageService: MessageService, 
+      private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
-
+    console.log('init')
       this.statuses = [
           {label: 'INSTOCK', value: 'instock'},
           {label: 'LOWSTOCK', value: 'lowstock'},

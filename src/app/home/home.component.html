@@ -18,7 +18,6 @@
       [disabled]="!selectedProducts || !selectedProducts.length"
     ></button>
   </ng-template>
-
   <ng-template pTemplate="right">
     <button
       pButton
@@ -29,7 +28,9 @@
     ></button>
   </ng-template>
 </p-toolbar>
-
+<pre>
+  {{ this.products | json }}
+</pre>
 <p-table
   #dt
   [value]="products"
@@ -87,7 +88,7 @@
         <p-tableCheckbox [value]="product"></p-tableCheckbox>
       </td>
       <td>{{ product.name }}</td>
-      <td>{{ product.price | currency: 'USD' }}</td>
+      <td>{{ product.price | currency: 'EUR' }}</td>
       <td>{{ product.category }}</td>
       <td>
         <p-rating
@@ -135,6 +136,8 @@
         type="text"
         pInputText
         id="name"
+        name="name"
+        ngDefaultControl
         [(ngModel)]="product.name"
         required
         autofocus
@@ -148,6 +151,8 @@
       <textarea
         id="description"
         pInputTextarea
+        ngDefaultControl
+        name="description"
         [(ngModel)]="product.description"
         required
         rows="3"
@@ -157,12 +162,10 @@
 
     <div class="p-field">
       <label for="inventoryStatus">Inventory Status</label>
-      <p-dropdown
-        [(ngModel)]="product.inventoryStatus"
-        inputId="inventoryStatus"
-        [options]="statuses"
-        placeholder="Select"
-      >
+      <p-dropdown>
+        ngDefaultControl name="inventoryStatus'
+        [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus"
+        [options]="statuses" placeholder="Select" >
         <ng-template let-option pTemplate="item">
           <span [class]="'product-badge status-' + option.value">{{
             option.label
@@ -179,6 +182,7 @@
             id="category1"
             name="category"
             value="Accessories"
+            ngDefaultControl
             [(ngModel)]="product.category"
           ></p-radioButton>
           <label for="category1">Accessories</label>
@@ -186,6 +190,7 @@
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
             id="category2"
+            ngDefaultControl
             name="category"
             value="Clothing"
             [(ngModel)]="product.category"
@@ -194,6 +199,7 @@
         </div>
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
+            ngDefaultControl
             id="category3"
             name="category"
             value="Electronics"
@@ -204,6 +210,7 @@
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
             id="category4"
+            ngDefaultControl
             name="category"
             value="Fitness"
             [(ngModel)]="product.category"
