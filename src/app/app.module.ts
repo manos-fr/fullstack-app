@@ -14,39 +14,39 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
-import {SidebarModule} from 'primeng/sidebar';
+import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import {MenubarModule} from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
 import { ProductService } from './services/productservice';
+import { DropdownModule } from 'primeng/dropdown';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        TableModule,
-        HttpClientModule,
-        InputTextModule,
-        DialogModule,
-        ToolbarModule,
-        ConfirmDialogModule,
-        RatingModule,
-        InputNumberModule,
-        InputTextareaModule,
-        RadioButtonModule,
-        ButtonModule,
-        AppRoutingModule,
-        SidebarModule,
-        MenubarModule,
-        
-    ],
-    providers: [ProductService],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    TableModule,
+    HttpClientModule,
+    InputTextModule,
+    DialogModule,
+    ToolbarModule,
+    ConfirmDialogModule,
+    RatingModule,
+    InputNumberModule,
+    InputTextareaModule,
+    RadioButtonModule,
+    ButtonModule,
+    AppRoutingModule,
+    SidebarModule,
+    MenubarModule,
+    DropdownModule,
+    BadgeModule,
+  ],
+  providers: [ProductService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -79,6 +79,9 @@
       <th pSortableColumn="rating">
         Reviews <p-sortIcon field="rating"></p-sortIcon>
       </th>
+      <th pSortableColumn="status">
+        Status <p-sortIcon field="status"></p-sortIcon>
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -96,6 +99,26 @@
           [readonly]="true"
           [cancel]="false"
         ></p-rating>
+      </td>
+      <td [ngSwitch]="product.inventoryStatus">
+        <p-badge
+          *ngSwitchCase="'INSTOCK'"
+          [value]="product.inventoryStatus"
+          severity="success"
+          >{{ product.inventoryStatus }}</p-badge
+        >
+        <p-badge
+          *ngSwitchCase="'LOWSTOCK'"
+          [value]="product.inventoryStatus"
+          severity="warning"
+          >{{ product.inventoryStatus }}</p-badge
+        >
+        <p-badge
+          *ngSwitchCase="'OUTOFSTOCK'"
+          [value]="product.inventoryStatus"
+          severity="danger"
+          >{{ product.inventoryStatus }}</p-badge
+        >
       </td>
       <td>
         <button
@@ -162,10 +185,12 @@
 
     <div class="p-field">
       <label for="inventoryStatus">Inventory Status</label>
-      <p-dropdown>
-        ngDefaultControl name="inventoryStatus'
-        [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus"
-        [options]="statuses" placeholder="Select" >
+      <p-dropdown
+        [(ngModel)]="product.inventoryStatus"
+        inputId="inventoryStatus"
+        [options]="statuses"
+        placeholder="Select"
+      >
         <ng-template let-option pTemplate="item">
           <span [class]="'product-badge status-' + option.value">{{
             option.label
