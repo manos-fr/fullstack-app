@@ -26,15 +26,19 @@ export class HomeComponent implements OnInit {
   selectedProducts: Product[];
   submitted: boolean;
   statuses: any[];
+  loading: boolean
+
+
 
   constructor(
     public productService: ProductService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     //   this.productService.getProducts().then((data) => (this.products = data));
+    this.loading = false
     this.fetchProducts();
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
@@ -48,12 +52,14 @@ export class HomeComponent implements OnInit {
   //   }
 
   fetchProducts() {
+    this.loading = true
     this.subscription = this.productService
       .fetchProducts()
       .pipe(take(1))
       .subscribe((res) => {
         this.products = res.data;
       });
+    this.loading = false
   }
 
   openNew() {
