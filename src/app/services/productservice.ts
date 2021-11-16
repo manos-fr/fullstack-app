@@ -6,7 +6,7 @@ import { mapData } from '../data.functions';
 
 import { Product, ProductsMapped } from '../domain/product';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProductService {
   status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
 
