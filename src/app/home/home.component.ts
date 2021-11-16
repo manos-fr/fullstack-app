@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   productDialog: boolean;
   //   productData$: Observable<Product>;
   subscription: Subscription;
-  products: Product[];
+  products: Product[] = [];
   product: Product;
   selectedProducts: Product[];
   submitted: boolean;
@@ -36,6 +36,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //   this.productService.getProducts().then((data) => (this.products = data));
     this.fetchProducts();
+    // this.productService.fetchProducts().subscribe((res) => {
+    //   this.products = res.data;
+    // });
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
       { label: 'LOWSTOCK', value: 'lowstock' },
@@ -50,10 +53,18 @@ export class HomeComponent implements OnInit {
   fetchProducts() {
     this.subscription = this.productService
       .fetchProducts()
-      .pipe(take(1))
-      .subscribe((res) => {
-        this.products = res.data;
-      });
+      .pipe(take(2))
+      .subscribe(
+        (res: any) => {
+          this.products = res.data;
+        }
+        // (error) => {
+        //   this.messageService.add({
+        //     severity: 'Error',
+        //     summary: 'Something went wrong',
+        //   });
+        // }
+      );
   }
 
   openNew() {
