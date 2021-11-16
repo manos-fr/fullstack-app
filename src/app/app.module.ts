@@ -22,6 +22,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { ProductService } from './services/productservice';
 import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
+import { TabViewModule } from 'primeng/tabview';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -45,6 +47,8 @@ import { BadgeModule } from 'primeng/badge';
     MenubarModule,
     DropdownModule,
     BadgeModule,
+    TabViewModule,
+    CardModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],

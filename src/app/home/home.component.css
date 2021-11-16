@@ -2,3 +2,21 @@
   display: flex;
   justify-content: space-between;
 }
+
+.card-2 {
+  min-width: 400px;
+  padding: 16px;
+  margin: 16px;
+  border: 1px solid rgba(59, 97, 166, 0.2);
+  border-radius: 15px;
+  position: relative;
+}
+
+/* .container {
+  background-image: url(../../assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg);
+} */
+
+/* .table-toolbar{
+  width: calc(118vw - 305px);
+
+} */

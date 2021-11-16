@@ -1,4 +1,107 @@
-<p-toolbar styleClass="p-mb-4">
+<div class="card-2">
+  <div class="p-d-flex p-flex-column">
+    <p-tabView class="vertical">
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <i class="pi pi-user"></i>
+          <span class="p-tabview-title p-ml-2"> My Account</span>
+        </ng-template>
+        <div class="p-d-flex p-flex-wrap">
+          <div class="p-col-12">
+            <div
+              class="
+                p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mx-5
+              "
+            >
+              <div class="p-d-flex p-flex-column p-col-12 p-py-0">
+                <div class="p-col-12">
+                  <div class="p-d-flex p-flex-row p-flex-wrap">
+                    <div
+                      class="
+                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
+                      "
+                    >
+                      <label class="p-pl-1">Input</label>
+                      <input
+                        id="contracting"
+                        type="text"
+                        pInputText
+                        placeholder="Search"
+                      />
+                    </div>
+                    <div
+                      class="
+                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
+                      "
+                    >
+                      <label class="p-pl-1">Name</label>
+                      <input
+                        id="contract"
+                        type="text"
+                        pInputText
+                        placeholder="Search"
+                      />
+                    </div>
+                    <div
+                      class="
+                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
+                      "
+                    >
+                      <label class="p-pl-1">Criteria</label>
+                      <input
+                        id="reportId"
+                        type="text"
+                        pInputText
+                        placeholder="Search"
+                      />
+                    </div>
+
+                    <div
+                      class="
+                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
+                      "
+                    >
+                      <label class="p-pl-1">Year</label>
+                      <input
+                        id="licencePlate"
+                        type="text"
+                        pInputText
+                        placeholder="Year"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="
+                p-col-12
+                p-xl-6
+                p-lg-6
+                p-md-12
+                p-d-flex
+                p-flex-wrap
+                p-justify-start
+              "
+            ></div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+    <div class="p-d-flex p-justify-end p-px-2" style="margin-bottom: 1.25rem">
+      <button
+        pButton
+        type="button"
+        class="p-m-2 p-button-rounded p-button-secondary"
+      >
+        <i class="pi pi-search p-mr-1"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-4">
   <ng-template pTemplate="left">
     <button
       pButton
@@ -31,122 +134,136 @@
 <!-- <pre>
   {{ this.products | json }}
 </pre> -->
-<p-table
-  #dt
-  [value]="products"
-  [loading]="loading"
-  [rows]="10"
-  [paginator]="true"
-  [first]="first"
-  sortField="name"
-  [globalFilterFields]="[
-    'name',
-    'country.name',
-    'representative.name',
-    'status'
-  ]"
-  [(selection)]="selectedProducts"
-  [rowHover]="true"
-  dataKey="id"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [showCurrentPageReport]="true"
->
-  <ng-template pTemplate="caption">
-    <div class="p-d-flex p-ai-center p-jc-between">
-      <h5 class="p-m-0">Manage Products</h5>
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Search..."
-        />
-      </span>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width: 3rem">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-      </th>
-      <th pSortableColumn="name">
-        Name <p-sortIcon field="name"></p-sortIcon>
-      </th>
-      <th pSortableColumn="price">
-        Price <p-sortIcon field="price"></p-sortIcon>
-      </th>
-      <th pSortableColumn="category">
-        Category <p-sortIcon field="category"></p-sortIcon>
-      </th>
-      <th pSortableColumn="rating">
-        Reviews <p-sortIcon field="rating"></p-sortIcon>
-      </th>
-      <th pSortableColumn="status">
-        Status <p-sortIcon field="status"></p-sortIcon>
-      </th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-    <tr>
-      <td>
-        <p-tableCheckbox [value]="product"></p-tableCheckbox>
-      </td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.price | currency: 'EUR' }}</td>
-      <td>{{ product.category }}</td>
-      <td>
-        <p-rating
-          [ngModel]="product.rating"
-          [readonly]="false"
-          [cancel]="false"
-        ></p-rating>
-      </td>
-      <td [ngSwitch]="product.inventoryStatus">
-        <p-badge
-          *ngSwitchCase="'INSTOCK'"
-          [value]="product.inventoryStatus"
-          severity="success"
-          >{{ product.inventoryStatus }}</p-badge
-        >
-        <p-badge
-          *ngSwitchCase="'LOWSTOCK'"
-          [value]="product.inventoryStatus"
-          severity="warning"
-          >{{ product.inventoryStatus }}</p-badge
-        >
-        <p-badge
-          *ngSwitchCase="'OUTOFSTOCK'"
-          [value]="product.inventoryStatus"
-          severity="danger"
-          >{{ product.inventoryStatus }}</p-badge
-        >
-      </td>
-      <td>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-pencil"
-          class="p-button-rounded p-button-success p-mr-2"
-          (click)="editProduct(product)"
-        ></button>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-trash"
-          class="p-button-rounded p-button-danger"
-          (click)="deleteProduct(product)"
-        ></button>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-    <div class="p-d-flex p-ai-center p-jc-between">
-      In total there are {{ products ? products.length : 0 }} products.
-    </div>
-  </ng-template>
-</p-table>
+<div class="card-2">
+  <p-table
+    #dt
+    [value]="products"
+    [loading]="loading"
+    dataKey="id"
+    [rows]="10"
+    [paginator]="true"
+    responsiveLayout="scroll"
+    styleClass="p-datatable-md"
+    sortField="name"
+    [globalFilterFields]="[
+      'name',
+      'country.name',
+      'representative.name',
+      'status'
+    ]"
+    [(selection)]="selectedProducts"
+    [rowHover]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-flex-wrap p-ai-center p-jc-between">
+        <h4 class="p-ml-4">Manage Products</h4>
+        <span class="p-input-icon-left p-ml-3">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..."
+            class="p-inputtext-md"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="price">
+          Price <p-sortIcon field="price"></p-sortIcon>
+        </th>
+        <th pSortableColumn="category">
+          Category <p-sortIcon field="category"></p-sortIcon>
+        </th>
+        <th pSortableColumn="rating">
+          Reviews <p-sortIcon field="rating"></p-sortIcon>
+        </th>
+        <th>
+          Status
+          <p-columnFilter
+            type="text"
+            field="inventoryStatus"
+            display="menu"
+            [showOperator]="false"
+            [showMatchModes]="false"
+            [showAddButton]="false"
+            [hideOnClear]="true"
+            matchMode="startsWith"
+          ></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="product"></p-tableCheckbox>
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency: 'EUR' }}</td>
+        <td>{{ product.category }}</td>
+        <td style="min-width: 170px">
+          <p-rating
+            [ngModel]="product.rating"
+            [readonly]="false"
+            [cancel]="false"
+          ></p-rating>
+        </td>
+        <td [ngSwitch]="product.inventoryStatus">
+          <p-badge
+            *ngSwitchCase="'INSTOCK'"
+            [value]="product.inventoryStatus"
+            severity="success"
+            >{{ product.inventoryStatus }}</p-badge
+          >
+          <p-badge
+            *ngSwitchCase="'LOWSTOCK'"
+            [value]="product.inventoryStatus"
+            severity="warning"
+            >{{ product.inventoryStatus }}</p-badge
+          >
+          <p-badge
+            *ngSwitchCase="'OUTOFSTOCK'"
+            [value]="product.inventoryStatus"
+            severity="danger"
+            >{{ product.inventoryStatus }}</p-badge
+          >
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success p-mr-2"
+            (click)="editProduct(product)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            (click)="deleteProduct(product)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{ products ? products.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
 
 <p-dialog
   [(visible)]="productDialog"

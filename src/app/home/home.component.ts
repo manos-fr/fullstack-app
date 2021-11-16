@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
   @ViewChild('dt') table: Table | undefined;
 
   productDialog: boolean;
-  //   productData$: Observable<Product>;
   subscription: Subscription;
   products: Product[] = [];
   product: Product;
@@ -40,43 +39,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //   this.productService.getProducts().then((data) => (this.products = data));
     this.loading = true;
-    // this.openNew();  /** It populates the table by calling the function
     this.fetchProducts();
-    // setTimeout(() => {
-    //   this.openNew();
-    //   this.loading = false;
-    // }, 1000);
-    // this.products = [
-    //   {
-    //     id: '1000',
-    //     code: 'f230fh0g3',
-    //     name: 'Bamboo Watch',
-    //     description: 'Product Description',
-    //     image: 'bamboo-watch.jpg',
-    //     price: 65,
-    //     category: 'Accessories',
-    //     quantity: 24,
-    //     inventoryStatus: 'INSTOCK',
-    //     rating: 5,
-    //   },
-    //   {
-    //     id: '1001',
-    //     code: 'nvklal433',
-    //     name: 'Black Watch',
-    //     description: 'Product Description',
-    //     image: 'black-watch.jpg',
-    //     price: 72,
-    //     category: 'Accessories',
-    //     quantity: 61,
-    //     inventoryStatus: 'INSTOCK',
-    //     rating: 4,
-    //   },
-    // ];
-    // this.productService.fetchProducts().subscribe((res) => {
-    //   this.products = res.data;
-    // });
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
       { label: 'LOWSTOCK', value: 'lowstock' },
@@ -84,25 +48,13 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  //   ngOnChanges() {
-  //     this.fetchProducts();
-  //   }
-
   fetchProducts() {
     this.subscription = this.productService
       .fetchProducts()
       .pipe(take(2))
-      .subscribe(
-        (res: any) => {
-          this.products = res.data;
-        }
-        // (error) => {
-        //   this.messageService.add({
-        //     severity: 'Error',
-        //     summary: 'Something went wrong',
-        //   });
-        // }
-      );
+      .subscribe((res: any) => {
+        this.products = res.data;
+      });
     setTimeout(() => {
       this.table.reset();
       this.loading = false;
