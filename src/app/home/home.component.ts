@@ -3,12 +3,14 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   OnChanges,
+  ViewChild,
 } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../domain/product';
 import { ProductService } from '../services/productservice';
 import { filter, map, take, tap } from 'rxjs/operators';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,8 @@ import { filter, map, take, tap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('dt') table: Table | undefined;
+
   productDialog: boolean;
   //   productData$: Observable<Product>;
   subscription: Subscription;
@@ -26,20 +30,50 @@ export class HomeComponent implements OnInit {
   selectedProducts: Product[];
   submitted: boolean;
   statuses: any[];
-  loading: boolean
-
-
+  loading: boolean;
+  first: number = 0;
 
   constructor(
     public productService: ProductService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     //   this.productService.getProducts().then((data) => (this.products = data));
-    this.loading = false
+    this.loading = true;
+    // this.openNew();  /** It populates the table by calling the function
     this.fetchProducts();
+    // setTimeout(() => {
+    //   this.openNew();
+    //   this.loading = false;
+    // }, 1000);
+    // this.products = [
+    //   {
+    //     id: '1000',
+    //     code: 'f230fh0g3',
+    //     name: 'Bamboo Watch',
+    //     description: 'Product Description',
+    //     image: 'bamboo-watch.jpg',
+    //     price: 65,
+    //     category: 'Accessories',
+    //     quantity: 24,
+    //     inventoryStatus: 'INSTOCK',
+    //     rating: 5,
+    //   },
+    //   {
+    //     id: '1001',
+    //     code: 'nvklal433',
+    //     name: 'Black Watch',
+    //     description: 'Product Description',
+    //     image: 'black-watch.jpg',
+    //     price: 72,
+    //     category: 'Accessories',
+    //     quantity: 61,
+    //     inventoryStatus: 'INSTOCK',
+    //     rating: 4,
+    //   },
+    // ];
     // this.productService.fetchProducts().subscribe((res) => {
     //   this.products = res.data;
     // });
@@ -55,7 +89,6 @@ export class HomeComponent implements OnInit {
   //   }
 
   fetchProducts() {
-    this.loading = true
     this.subscription = this.productService
       .fetchProducts()
       .pipe(take(2))
@@ -70,7 +103,10 @@ export class HomeComponent implements OnInit {
         //   });
         // }
       );
-    this.loading = false
+    setTimeout(() => {
+      this.table.reset();
+      this.loading = false;
+    }, 500);
   }
 
   openNew() {

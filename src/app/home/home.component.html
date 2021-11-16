@@ -28,16 +28,17 @@
     ></button>
   </ng-template>
 </p-toolbar>
-<pre>
+<!-- <pre>
   {{ this.products | json }}
-</pre>
+</pre> -->
 <p-table
   #dt
   [value]="products"
   [loading]="loading"
   [rows]="10"
-  styleClass="p-datatable-entries p-datatable-striped"
   [paginator]="true"
+  [first]="first"
+  sortField="name"
   [globalFilterFields]="[
     'name',
     'country.name',
@@ -98,7 +99,7 @@
       <td>
         <p-rating
           [ngModel]="product.rating"
-          [readonly]="true"
+          [readonly]="false"
           [cancel]="false"
         ></p-rating>
       </td>
@@ -134,7 +135,7 @@
           pButton
           pRipple
           icon="pi pi-trash"
-          class="p-button-rounded p-button-warning"
+          class="p-button-rounded p-button-danger"
           (click)="deleteProduct(product)"
         ></button>
       </td>
@@ -162,10 +163,8 @@
         pInputText
         id="name"
         name="name"
-        ngDefaultControl
         [(ngModel)]="product.name"
         required
-        autofocus
       />
       <small class="p-error" *ngIf="submitted && !product.name"
         >Name is required.</small
@@ -176,7 +175,6 @@
       <textarea
         id="description"
         pInputTextarea
-        ngDefaultControl
         name="description"
         [(ngModel)]="product.description"
         required
@@ -209,7 +207,6 @@
             id="category1"
             name="category"
             value="Accessories"
-            ngDefaultControl
             [(ngModel)]="product.category"
           ></p-radioButton>
           <label for="category1">Accessories</label>
@@ -217,7 +214,6 @@
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
             id="category2"
-            ngDefaultControl
             name="category"
             value="Clothing"
             [(ngModel)]="product.category"
@@ -226,7 +222,6 @@
         </div>
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
-            ngDefaultControl
             id="category3"
             name="category"
             value="Electronics"
@@ -237,7 +232,6 @@
         <div class="p-field-radiobutton p-col-6">
           <p-radioButton
             id="category4"
-            ngDefaultControl
             name="category"
             value="Fitness"
             [(ngModel)]="product.category"
