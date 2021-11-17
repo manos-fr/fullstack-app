@@ -12,6 +12,10 @@
   position: relative;
 }
 
+.card-1 {
+  border-radius: 15px;
+  background-color: rgba(3, 15, 15, 0.747);
+}
 /* .container {
   background-image: url(../../assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg);
 } */

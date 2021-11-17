@@ -6,85 +6,34 @@
           <i class="pi pi-user"></i>
           <span class="p-tabview-title p-ml-2"> My Account</span>
         </ng-template>
-        <div class="p-d-flex p-flex-wrap">
-          <div class="p-col-12">
+        <div
+          class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"
+        >
+          <div class="p-d-flex p-flex-column p-col-12 p-py-0">
             <div
               class="
-                p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mx-5
+                p-field p-d-flex p-flex-column p-col-12 p-lg-8 p-xl-6 p-mt-4
               "
             >
-              <div class="p-d-flex p-flex-column p-col-12 p-py-0">
-                <div class="p-col-12">
-                  <div class="p-d-flex p-flex-row p-flex-wrap">
-                    <div
-                      class="
-                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
-                      "
-                    >
-                      <label class="p-pl-1">Input</label>
-                      <input
-                        id="contracting"
-                        type="text"
-                        pInputText
-                        placeholder="Search"
-                      />
-                    </div>
-                    <div
-                      class="
-                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
-                      "
-                    >
-                      <label class="p-pl-1">Name</label>
-                      <input
-                        id="contract"
-                        type="text"
-                        pInputText
-                        placeholder="Search"
-                      />
-                    </div>
-                    <div
-                      class="
-                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
-                      "
-                    >
-                      <label class="p-pl-1">Criteria</label>
-                      <input
-                        id="reportId"
-                        type="text"
-                        pInputText
-                        placeholder="Search"
-                      />
-                    </div>
-
-                    <div
-                      class="
-                        p-field p-d-flex p-flex-column p-col-12 p-lg-6 p-xl-4
-                      "
-                    >
-                      <label class="p-pl-1">Year</label>
-                      <input
-                        id="licencePlate"
-                        type="text"
-                        pInputText
-                        placeholder="Year"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <input
+                id="contracting"
+                type="text"
+                pInputText
+                placeholder="Name"
+              />
             </div>
-
             <div
               class="
-                p-col-12
-                p-xl-6
-                p-lg-6
-                p-md-12
-                p-d-flex
-                p-flex-wrap
-                p-justify-start
+                p-field p-d-flex p-flex-column p-col-12 p-lg-8 p-xl-6 p-mb-4
               "
-            ></div>
+            >
+              <input
+                id="contract"
+                type="text"
+                pInputText
+                placeholder="Artist"
+              />
+            </div>
           </div>
         </div>
       </p-tabPanel>
@@ -95,13 +44,13 @@
         type="button"
         class="p-m-2 p-button-rounded p-button-secondary"
       >
-        <i class="pi pi-search p-mr-1"></i>
+        <i class="pi pi-search"></i>
       </button>
     </div>
   </div>
 </div>
 
-<p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-4">
+<p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-3">
   <ng-template pTemplate="left">
     <button
       pButton
@@ -142,8 +91,8 @@
     dataKey="id"
     [rows]="10"
     [paginator]="true"
-    responsiveLayout="scroll"
-    styleClass="p-datatable-md"
+    responsiveLayout="stack"
+    styleClass="p-datatable-sm p-datatable-striped"
     sortField="name"
     [globalFilterFields]="[
       'name',
