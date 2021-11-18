@@ -8,12 +8,13 @@ export function mapData(res: ProductsMapped) {
       code: item.code,
       name: item.name,
       description: item.description,
-      price: item.price,
+      year: item.year,
       quantity: item.quantity,
       inventoryStatus: item.inventoryStatus,
-      category: item.category,
+      artist: item.artist,
       image: item.image,
       rating: item.rating,
+      isLoved: item.isLoved,
     })),
   };
   return newRes;

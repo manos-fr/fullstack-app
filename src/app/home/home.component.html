@@ -74,9 +74,10 @@
     <button
       pButton
       pRipple
-      label="Export"
-      icon="pi pi-upload"
-      class="p-button-help"
+      label="Download"
+      icon="pi pi-download"
+      class="p-button-info"
+      [disabled]="!selectedProducts || selectedProducts.length !== 1"
     ></button>
   </ng-template>
 </p-toolbar>
@@ -125,17 +126,17 @@
         <th pSortableColumn="name">
           Name <p-sortIcon field="name"></p-sortIcon>
         </th>
-        <th pSortableColumn="price">
-          Price <p-sortIcon field="price"></p-sortIcon>
+        <th style="width: 200px" pSortableColumn="category">
+          Artist <p-sortIcon field="category"></p-sortIcon>
         </th>
-        <th pSortableColumn="category">
-          Category <p-sortIcon field="category"></p-sortIcon>
+        <th style="width: 100px" pSortableColumn="year">
+          Year <p-sortIcon field="year"></p-sortIcon>
         </th>
         <th pSortableColumn="rating">
           Reviews <p-sortIcon field="rating"></p-sortIcon>
         </th>
         <th>
-          Status
+          Album
           <p-columnFilter
             type="text"
             field="inventoryStatus"
@@ -156,8 +157,8 @@
           <p-tableCheckbox [value]="product"></p-tableCheckbox>
         </td>
         <td>{{ product.name }}</td>
-        <td>{{ product.price | currency: 'EUR' }}</td>
-        <td>{{ product.category }}</td>
+        <td>{{ product.artist }}</td>
+        <td>{{ product.year }}</td>
         <td style="min-width: 170px">
           <p-rating
             [ngModel]="product.rating"
@@ -167,19 +168,19 @@
         </td>
         <td [ngSwitch]="product.inventoryStatus">
           <p-badge
-            *ngSwitchCase="'INSTOCK'"
+            *ngSwitchCase="'CALIFORNICATION'"
             [value]="product.inventoryStatus"
-            severity="success"
+            severity="info"
             >{{ product.inventoryStatus }}</p-badge
           >
           <p-badge
-            *ngSwitchCase="'LOWSTOCK'"
+            *ngSwitchCase="'ARCADIUM'"
             [value]="product.inventoryStatus"
             severity="warning"
             >{{ product.inventoryStatus }}</p-badge
           >
           <p-badge
-            *ngSwitchCase="'OUTOFSTOCK'"
+            *ngSwitchCase="'BLOOD SUGAR'"
             [value]="product.inventoryStatus"
             severity="danger"
             >{{ product.inventoryStatus }}</p-badge
@@ -189,17 +190,40 @@
           <button
             pButton
             pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success p-mr-2"
+            icon="pi pi-eye"
+            type="button"
+            class="
+              p-button-rounded p-button-help p-button-text p-button-lg p-mr-2
+            "
             (click)="editProduct(product)"
           ></button>
+          <!-- <ng-container [ngSwitch]="product.isLoved"> -->
           <button
+            *ngIf="product.isLoved === 'no'"
+            [value]="product.isLoved"
             pButton
             pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-danger"
-            (click)="deleteProduct(product)"
-          ></button>
+            icon="pi pi-heart"
+            (click)="loveItem(product)"
+            type="button"
+            class="
+              p-button-rounded p-button-secondary p-button-text p-button-lg
+            "
+          >
+            <!-- <i class="pi pi-heart"></i> -->
+          </button>
+          <button
+            *ngIf="product.isLoved === 'yes'"
+            [value]="product.isLoved"
+            pButton
+            pRipple
+            icon="pi pi-heart"
+            (click)="loveItem(product)"
+            type="button"
+            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+          >
+            <!-- <i class="pi pi-heart"></i> -->
+          </button>
         </td>
       </tr>
     </ng-template>

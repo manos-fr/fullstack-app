@@ -3,12 +3,13 @@ export interface Product {
   code?: string;
   name?: string;
   description?: string;
-  price?: number;
+  year?: number;
   quantity?: number;
   inventoryStatus?: string;
-  category?: string;
+  artist?: string;
   image?: string;
   rating?: number;
+  isLoved?: string;
 }
 export interface ProductsMapped {
   data: Product[];
