@@ -7,10 +7,10 @@
   /* background-image: url(./assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg);
   position: relative;
   size: 500px; */
-  background-color: rgba(241, 237, 229, 0.274);
+  background-color: rgba(0, 23, 99, 0.281);
 }
 
-@media screen and (max-width: 70em) {
+/* @media screen and (max-width: 70em) {
   .mv-text-container {
     white-space: normal !important;
     text-overflow: initial !important;
@@ -68,5 +68,5 @@
 
   tr > td:first-child {
     padding-top: 15px !important;
-  }
-}
+  } */
+/* } */
