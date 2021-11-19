@@ -208,6 +208,7 @@
           >
           </button> -->
           <button
+            *ngIf="product.isLoved === 'yes'"
             [value]="product.isLoved"
             pButton
             pRipple
@@ -224,6 +225,31 @@
             <div class="collapsible-header" (click)="showFirst = !showFirst">
               <i class="material-icons" *ngIf="showFirst">favorite_border</i
               ><i class="material-icons" *ngIf="!showFirst">favorite</i>
+            </div>
+          </button>
+          <button
+            *ngIf="product.isLoved === 'no'"
+            [value]="product.isLoved"
+            pButton
+            pRipple
+            (click)="loveItem(product)"
+            type="button"
+            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+          >
+            <!-- <span *ngIf="product.isLoved === 'yes'" class="material-icons">
+              favorite
+            </span>
+            <span *ngIf="product.isLoved === 'no'" class="material-icons">
+              favorite_border
+            </span> -->
+            <div
+              class="collapsible-header"
+              (click)="showFirstNo = !showFirstNo"
+            >
+              <i class="material-icons" *ngIf="showFirstNo">favorite</i
+              ><i class="material-icons" *ngIf="!showFirstNo"
+                >favorite_border</i
+              >
             </div>
           </button>
           <!-- <button
