@@ -190,29 +190,75 @@
           <button
             pButton
             pRipple
-            icon="pi pi-eye"
             type="button"
             class="
               p-button-rounded p-button-help p-button-text p-button-lg p-mr-2
             "
             (click)="editProduct(product)"
-          ></button>
-          <!-- <ng-container [ngSwitch]="product.isLoved"> -->
+          >
+            <span class="material-icons">visibility</span>
+          </button>
+          <!-- <button
+            [value]="product.isLoved"
+            pButton
+            pRipple
+            (click)="loveItem(product)"
+            type="button"
+            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+          >
+          </button> -->
           <button
-            *ngIf="product.isLoved === 'no'"
+            [value]="product.isLoved"
+            pButton
+            pRipple
+            (click)="loveItem(product)"
+            type="button"
+            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+          >
+            <!-- <span *ngIf="product.isLoved === 'yes'" class="material-icons">
+              favorite
+            </span>
+            <span *ngIf="product.isLoved === 'no'" class="material-icons">
+              favorite_border
+            </span> -->
+            <div class="collapsible-header" (click)="showFirst = !showFirst">
+              <i class="material-icons" *ngIf="showFirst">favorite_border</i
+              ><i class="material-icons" *ngIf="!showFirst">favorite</i>
+            </div>
+          </button>
+          <!-- <button
+            [value]="product.isLoved"
+            pButton
+            pRipple
+            (click)="loveItem($event)"
+            type="button"
+            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+          >
+            <span *ngIf="product.isLoved === 'yes'" class="material-icons">
+              favorite
+            </span>
+            <span *ngIf="product.isLoved === 'no'" class="material-icons">
+              favorite_border
+            </span>
+          </button> -->
+          <!-- <ng-container [ngSwitch]="product.isLoved"> -->
+          <!-- <button
+            [ngClass]="{
+              '[p-button-rounded p-button-danger p-button-text p-button-lg]':
+                product.isLoved === 'no',
+              '[p-button-rounded p-button-secondary p-button-text p-button-lg]':
+                product.isLoved === 'yes'
+            }"
             [value]="product.isLoved"
             pButton
             pRipple
             icon="pi pi-heart"
             (click)="loveItem(product)"
             type="button"
-            class="
-              p-button-rounded p-button-secondary p-button-text p-button-lg
-            "
-          >
-            <!-- <i class="pi pi-heart"></i> -->
-          </button>
-          <button
+          >  -->
+          <!-- <i class="pi pi-heart"></i> -->
+          <!-- </button> -->
+          <!-- <button
             *ngIf="product.isLoved === 'yes'"
             [value]="product.isLoved"
             pButton
@@ -222,8 +268,7 @@
             type="button"
             class="p-button-rounded p-button-danger p-button-text p-button-lg"
           >
-            <!-- <i class="pi pi-heart"></i> -->
-          </button>
+          </button> -->
         </td>
       </tr>
     </ng-template>

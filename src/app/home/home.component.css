@@ -17,6 +17,31 @@
   border-radius: 15px;
   background-color: rgba(6, 17, 17, 0.582);
 }
+
+.collapsible-header.active i.more {
+  display: none;
+}
+
+.collapsible-header.active i.less {
+  display: block;
+}
+
+.collapsible-header i.less {
+  display: none;
+}
+
+/* .button-custom {
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  color: brown;
+} */
 /* .container {
   background-image: url(../../assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg);
 } */

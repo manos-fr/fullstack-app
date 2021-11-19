@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
       ? (this.product.isLoved = 'yes')
       : (this.product.isLoved = 'no');
     console.log(this.product.isLoved);
+    return this.product;
   }
 
   fetchProducts() {
