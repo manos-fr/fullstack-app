@@ -25,6 +25,7 @@ import { BadgeModule } from 'primeng/badge';
 import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -51,6 +52,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     TabViewModule,
     CardModule,
     ToggleButtonModule,
+    SelectButtonModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],

@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
   loading: boolean;
+
   constructor(
     public productService: ProductService,
     private messageService: MessageService,
@@ -46,13 +47,12 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  loveItem(product: Product) {
-    this.product = { ...product };
-    this.product.isLoved === 'no'
-      ? (this.product.isLoved = 'yes')
-      : (this.product.isLoved = 'no');
-    console.log(this.product.isLoved);
-    return this.product;
+  loveItem(index) {
+    this.products[index].isLoved === false
+      ? (this.products[index].isLoved = true)
+      : (this.products[index].isLoved = false);
+    console.log(this.products[index].isLoved);
+    return this.products[index];
   }
 
   fetchProducts() {

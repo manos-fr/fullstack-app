@@ -9,6 +9,20 @@
         <div
           class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"
         >
+          <!-- <div
+            class="
+              p-field p-d-none p-d-md-block p-col-12 p-md-7
+              login-image-container
+              p-m-0 p-pb-0
+            "
+            style="height: 100vh"
+          >
+            <img
+              alt="Login Image"
+              class="login-image"
+              src="../../assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg"
+            />
+          </div> -->
           <div class="p-d-flex p-flex-column p-col-12 p-py-0">
             <div
               class="
@@ -105,7 +119,7 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-flex-wrap p-ai-center p-jc-between">
-        <h4 class="p-ml-4">Manage Products</h4>
+        <h4 class="p-ml-4">Songs Results</h4>
         <span class="p-input-icon-left p-ml-3">
           <i class="pi pi-search"></i>
           <input
@@ -119,7 +133,7 @@
       </div>
     </ng-template>
     <ng-template pTemplate="header">
-      <tr>
+      <tr class="p-selectable-row">
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
@@ -151,7 +165,7 @@
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-product let-ri="rowIndex">
       <tr>
         <td>
           <p-tableCheckbox [value]="product"></p-tableCheckbox>
@@ -192,115 +206,39 @@
             pRipple
             type="button"
             class="
-              p-button-rounded p-button-help p-button-text p-button-lg p-mr-2
+              p-button-rounded
+              p-button-help
+              p-button-text
+              p-button-sm
+              p-mr-2
+              p-mb-2
             "
             (click)="editProduct(product)"
           >
             <span class="material-icons">visibility</span>
           </button>
-          <!-- <button
-            [value]="product.isLoved"
-            pButton
-            pRipple
-            (click)="loveItem(product)"
-            type="button"
-            class="p-button-rounded p-button-danger p-button-text p-button-lg"
-          >
-          </button> -->
           <button
-            *ngIf="product.isLoved === 'yes'"
-            [value]="product.isLoved"
             pButton
             pRipple
-            (click)="loveItem(product)"
+            (click)="loveItem(ri)"
             type="button"
-            class="p-button-rounded p-button-danger p-button-text p-button-lg"
+            class="
+              p-button-rounded p-button-danger p-button-text p-button-lg p-mt-2
+            "
           >
-            <!-- <span *ngIf="product.isLoved === 'yes'" class="material-icons">
-              favorite
-            </span>
-            <span *ngIf="product.isLoved === 'no'" class="material-icons">
-              favorite_border
-            </span> -->
-            <div class="collapsible-header" (click)="showFirst = !showFirst">
-              <i class="material-icons" *ngIf="showFirst">favorite_border</i
-              ><i class="material-icons" *ngIf="!showFirst">favorite</i>
+            <div *ngIf="product.isLoved === true">
+              <i class="material-icons">favorite</i>
+            </div>
+            <div *ngIf="product.isLoved === false">
+              <i class="material-icons">favorite_border</i>
             </div>
           </button>
-          <button
-            *ngIf="product.isLoved === 'no'"
-            [value]="product.isLoved"
-            pButton
-            pRipple
-            (click)="loveItem(product)"
-            type="button"
-            class="p-button-rounded p-button-danger p-button-text p-button-lg"
-          >
-            <!-- <span *ngIf="product.isLoved === 'yes'" class="material-icons">
-              favorite
-            </span>
-            <span *ngIf="product.isLoved === 'no'" class="material-icons">
-              favorite_border
-            </span> -->
-            <div
-              class="collapsible-header"
-              (click)="showFirstNo = !showFirstNo"
-            >
-              <i class="material-icons" *ngIf="showFirstNo">favorite</i
-              ><i class="material-icons" *ngIf="!showFirstNo"
-                >favorite_border</i
-              >
-            </div>
-          </button>
-          <!-- <button
-            [value]="product.isLoved"
-            pButton
-            pRipple
-            (click)="loveItem($event)"
-            type="button"
-            class="p-button-rounded p-button-danger p-button-text p-button-lg"
-          >
-            <span *ngIf="product.isLoved === 'yes'" class="material-icons">
-              favorite
-            </span>
-            <span *ngIf="product.isLoved === 'no'" class="material-icons">
-              favorite_border
-            </span>
-          </button> -->
-          <!-- <ng-container [ngSwitch]="product.isLoved"> -->
-          <!-- <button
-            [ngClass]="{
-              '[p-button-rounded p-button-danger p-button-text p-button-lg]':
-                product.isLoved === 'no',
-              '[p-button-rounded p-button-secondary p-button-text p-button-lg]':
-                product.isLoved === 'yes'
-            }"
-            [value]="product.isLoved"
-            pButton
-            pRipple
-            icon="pi pi-heart"
-            (click)="loveItem(product)"
-            type="button"
-          >  -->
-          <!-- <i class="pi pi-heart"></i> -->
-          <!-- </button> -->
-          <!-- <button
-            *ngIf="product.isLoved === 'yes'"
-            [value]="product.isLoved"
-            pButton
-            pRipple
-            icon="pi pi-heart"
-            (click)="loveItem(product)"
-            type="button"
-            class="p-button-rounded p-button-danger p-button-text p-button-lg"
-          >
-          </button> -->
         </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
-        In total there are {{ products ? products.length : 0 }} products.
+        In total there are {{ products ? products.length : 0 }} songs.
       </div>
     </ng-template>
   </p-table>
@@ -308,114 +246,116 @@
 
 <p-dialog
   [(visible)]="productDialog"
-  [style]="{ width: '450px' }"
-  header="Product Details"
+  [style]="{ width: '1000px' }"
+  header="Red Hot Chili Peppers - Guitar Tab"
   [modal]="true"
   styleClass="p-fluid"
 >
   <ng-template pTemplate="content">
-    <div class="p-field">
-      <label for="name">Name</label>
-      <input
-        type="text"
-        pInputText
-        id="name"
-        name="name"
-        [(ngModel)]="product.name"
-        required
-      />
-      <small class="p-error" *ngIf="submitted && !product.name"
-        >Name is required.</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        pInputTextarea
-        name="description"
-        [(ngModel)]="product.description"
-        required
-        rows="3"
-        cols="20"
-      ></textarea>
-    </div>
+    <div class="rhcp-image">
+      <div class="p-field content">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          name="name"
+          [(ngModel)]="product.name"
+          required
+        />
+        <small class="p-error" *ngIf="submitted && !product.name"
+          >Name is required.</small
+        >
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          pInputTextarea
+          name="description"
+          [(ngModel)]="product.description"
+          required
+          rows="3"
+          cols="20"
+        ></textarea>
+      </div>
 
-    <div class="p-field">
-      <label for="inventoryStatus">Inventory Status</label>
-      <p-dropdown
-        [(ngModel)]="product.inventoryStatus"
-        inputId="inventoryStatus"
-        [options]="statuses"
-        placeholder="Select"
-      >
-        <ng-template let-option pTemplate="item">
-          <span [class]="'product-badge status-' + option.value">{{
-            option.label
-          }}</span>
-        </ng-template>
-      </p-dropdown>
-    </div>
+      <div class="p-field">
+        <label for="inventoryStatus">Inventory Status</label>
+        <p-dropdown
+          [(ngModel)]="product.inventoryStatus"
+          inputId="inventoryStatus"
+          [options]="statuses"
+          placeholder="Select"
+        >
+          <ng-template let-option pTemplate="item">
+            <span [class]="'product-badge status-' + option.value">{{
+              option.label
+            }}</span>
+          </ng-template>
+        </p-dropdown>
+      </div>
 
-    <div class="p-field">
-      <label class="p-mb-3">Category</label>
+      <div class="p-field">
+        <label class="p-mb-3">Category</label>
+        <div class="p-formgrid p-grid">
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton
+              id="category1"
+              name="category"
+              value="Accessories"
+              [(ngModel)]="product.category"
+            ></p-radioButton>
+            <label for="category1">Accessories</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton
+              id="category2"
+              name="category"
+              value="Clothing"
+              [(ngModel)]="product.category"
+            ></p-radioButton>
+            <label for="category2">Clothing</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton
+              id="category3"
+              name="category"
+              value="Electronics"
+              [(ngModel)]="product.category"
+            ></p-radioButton>
+            <label for="category3">Electronics</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton
+              id="category4"
+              name="category"
+              value="Fitness"
+              [(ngModel)]="product.category"
+            ></p-radioButton>
+            <label for="category4">Fitness</label>
+          </div>
+        </div>
+      </div>
+
       <div class="p-formgrid p-grid">
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category1"
-            name="category"
-            value="Accessories"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category1">Accessories</label>
+        <div class="p-field p-col">
+          <label for="price">Price</label>
+          <p-inputNumber
+            id="price"
+            [(ngModel)]="product.price"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+          ></p-inputNumber>
         </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category2"
-            name="category"
-            value="Clothing"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category2">Clothing</label>
+        <div class="p-field p-col">
+          <label for="quantity">Quantity</label>
+          <p-inputNumber
+            id="quantity"
+            [(ngModel)]="product.quantity"
+          ></p-inputNumber>
         </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category3"
-            name="category"
-            value="Electronics"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category3">Electronics</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category4"
-            name="category"
-            value="Fitness"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category4">Fitness</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-formgrid p-grid">
-      <div class="p-field p-col">
-        <label for="price">Price</label>
-        <p-inputNumber
-          id="price"
-          [(ngModel)]="product.price"
-          mode="currency"
-          currency="USD"
-          locale="en-US"
-        ></p-inputNumber>
-      </div>
-      <div class="p-field p-col">
-        <label for="quantity">Quantity</label>
-        <p-inputNumber
-          id="quantity"
-          [(ngModel)]="product.quantity"
-        ></p-inputNumber>
       </div>
     </div>
   </ng-template>

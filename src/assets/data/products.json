@@ -11,7 +11,7 @@
 			"quantity": 24,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "yes"
+			"isLoved" : true
 		},
 		{
 			"id": "1001",
@@ -24,7 +24,7 @@
 			"quantity": 61,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved": "no"
+			"isLoved": false
 		},
 		{
 			"id": "1002",
@@ -37,7 +37,7 @@
 			"quantity": 2,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 3,
-			"isLoved" : "yes"
+			"isLoved" : true
 
 		},
 		{
@@ -51,7 +51,7 @@
 			"quantity": 25,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -65,7 +65,7 @@
 			"quantity": 73,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -79,7 +79,7 @@
 			"quantity": 0,
 			"inventoryStatus": "CALIFORNICATION",
 			"rating": 4,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -93,7 +93,7 @@
 			"quantity": 5,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 3,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -107,7 +107,7 @@
 			"quantity": 23,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -121,7 +121,7 @@
 			"quantity": 2,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -135,7 +135,7 @@
 			"quantity": 63,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 3,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -149,7 +149,7 @@
 			"quantity": 0,
 			"inventoryStatus": "CALIFORNICATION",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -163,7 +163,7 @@
 			"quantity": 23,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -177,7 +177,7 @@
 			"quantity": 74,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -191,7 +191,7 @@
 			"quantity": 0,
 			"inventoryStatus": "CALIFORNICATION",
 			"rating": 3,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -205,7 +205,7 @@
 			"quantity": 8,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 5,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -219,7 +219,7 @@
 			"quantity": 34,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -233,7 +233,7 @@
 			"quantity": 12,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 3,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -247,7 +247,7 @@
 			"quantity": 42,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -261,7 +261,7 @@
 			"quantity": 41,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -275,7 +275,7 @@
 			"quantity": 63,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -289,7 +289,7 @@
 			"quantity": 0,
 			"inventoryStatus": "CALIFORNICATION",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -303,7 +303,7 @@
 			"quantity": 6,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 3,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -317,7 +317,7 @@
 			"quantity": 62,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -331,7 +331,7 @@
 			"quantity": 2,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 5,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -345,7 +345,7 @@
 			"quantity": 0,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -359,7 +359,7 @@
 			"quantity": 52,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 4,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -373,7 +373,7 @@
 			"quantity": 3,
 			"inventoryStatus": "ARCADIUM",
 			"rating": 3,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -387,7 +387,7 @@
 			"quantity": 35,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 3,
-			"isLoved" : "no"
+			"isLoved" : false
 			
 		},
 		{
@@ -401,7 +401,7 @@
 			"quantity": 15,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 5,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		},
 		{
@@ -415,7 +415,7 @@
 			"quantity": 25,
 			"inventoryStatus": "BLOOD SUGAR",
 			"rating": 8,
-			"isLoved" : "yes"
+			"isLoved" : true
 			
 		}
 	]

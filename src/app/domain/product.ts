@@ -9,7 +9,7 @@ export interface Product {
   artist?: string;
   image?: string;
   rating?: number;
-  isLoved?: string;
+  isLoved?: boolean;
 }
 export interface ProductsMapped {
   data: Product[];
