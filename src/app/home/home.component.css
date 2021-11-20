@@ -37,4 +37,5 @@
 
 .content {
   position: relative;
+  width: fit-content;
 }

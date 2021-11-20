@@ -74,23 +74,23 @@
       class="p-button-success p-mr-2"
       (click)="openNew()"
     ></button>
-    <button
-      pButton
-      pRipple
-      [label]="Delete"
-      icon="pi pi-trash"
-      class="p-button-danger"
-      (click)="deleteSelectedProducts()"
-      [disabled]="!selectedProducts || !selectedProducts.length"
-    ></button>
   </ng-template>
   <ng-template pTemplate="right">
     <button
       pButton
       pRipple
+      label="Print"
+      icon="pi pi-print"
+      class="p-button-secondary"
+      (click)="printSelectedProduct()"
+      [disabled]="!selectedProducts || selectedProducts.length !== 1"
+    ></button>
+    <button
+      pButton
+      pRipple
       label="Download"
       icon="pi pi-download"
-      class="p-button-info"
+      class="p-button-info p-ml-2"
       [disabled]="!selectedProducts || selectedProducts.length !== 1"
     ></button>
   </ng-template>
@@ -249,12 +249,17 @@
   [style]="{ width: '1000px' }"
   header="Red Hot Chili Peppers - Guitar Tab"
   [modal]="true"
+  [draggable]="true"
+  [resizable]="true"
   styleClass="p-fluid"
+  [breakpoints]="{ '1000px': '85vw' }"
 >
   <ng-template pTemplate="content">
-    <div class="rhcp-image">
+    <!-- <h4>Give it Away</h4> -->
+    <div class="rhcp-image p-grid p-col-12 p-d-flex p-flex-column">
+      <h4>Give It Away</h4>
       <div class="p-field content">
-        <label for="name">Name</label>
+        <!-- <label for="name">Name</label>
         <input
           type="text"
           pInputText
@@ -265,96 +270,34 @@
         />
         <small class="p-error" *ngIf="submitted && !product.name"
           >Name is required.</small
-        >
-      </div>
-      <div class="p-field">
+        > -->
+        <!-- <div class="p-field">
         <label for="description">Description</label>
         <textarea
           id="description"
           pInputTextarea
           name="description"
           [(ngModel)]="product.description"
-          required
           rows="3"
           cols="20"
         ></textarea>
-      </div>
-
-      <div class="p-field">
-        <label for="inventoryStatus">Inventory Status</label>
-        <p-dropdown
-          [(ngModel)]="product.inventoryStatus"
-          inputId="inventoryStatus"
-          [options]="statuses"
-          placeholder="Select"
-        >
-          <ng-template let-option pTemplate="item">
-            <span [class]="'product-badge status-' + option.value">{{
-              option.label
-            }}</span>
-          </ng-template>
-        </p-dropdown>
-      </div>
-
-      <div class="p-field">
-        <label class="p-mb-3">Category</label>
-        <div class="p-formgrid p-grid">
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton
-              id="category1"
-              name="category"
-              value="Accessories"
-              [(ngModel)]="product.category"
-            ></p-radioButton>
-            <label for="category1">Accessories</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton
-              id="category2"
-              name="category"
-              value="Clothing"
-              [(ngModel)]="product.category"
-            ></p-radioButton>
-            <label for="category2">Clothing</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton
-              id="category3"
-              name="category"
-              value="Electronics"
-              [(ngModel)]="product.category"
-            ></p-radioButton>
-            <label for="category3">Electronics</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton
-              id="category4"
-              name="category"
-              value="Fitness"
-              [(ngModel)]="product.category"
-            ></p-radioButton>
-            <label for="category4">Fitness</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-formgrid p-grid">
-        <div class="p-field p-col">
-          <label for="price">Price</label>
-          <p-inputNumber
-            id="price"
-            [(ngModel)]="product.price"
-            mode="currency"
-            currency="USD"
-            locale="en-US"
-          ></p-inputNumber>
-        </div>
-        <div class="p-field p-col">
-          <label for="quantity">Quantity</label>
-          <p-inputNumber
-            id="quantity"
-            [(ngModel)]="product.quantity"
-          ></p-inputNumber>
+      </div> -->
+        <div class="p-col-12 p-sm-10 p-md-12 p-lg-10">
+          <pre>
+          E--------------------------|-----11------11-------11------11-----11-------|
+          B--------------------13b---|----------------------------------------------|
+          G--------------------11----|--------11br----11br-----11br----11br----11br-|
+          D------7---7-7-7-----------|----------------------------------------------|
+          A------0---0-0-0--0--------|----------------------------------------------|
+          E--------------------------|----------------------------------------------|
+          E--------------------------|----------------------------------------------------|
+          B--------------------13b---|----------------------------------------------------|
+          G--------------------11----|----------------------------------------------------|
+          D------7---7-7-7-----------|-----5--5---------5--5-----5---5-----5--5----5--5---|
+          A------0---0-0-0--0--------|-----------3---3--------4----------4-------4------4-|
+          E--------------------------|----------------------------------------------------|
+        </pre
+          >
         </div>
       </div>
     </div>
@@ -364,19 +307,19 @@
     <button
       pButton
       pRipple
-      label="Cancel"
+      label="Click here or press Esc"
       icon="pi pi-times"
       class="p-button-text"
       (click)="hideDialog()"
     ></button>
-    <button
+    <!-- <button
       pButton
       pRipple
       label="Save"
       icon="pi pi-check"
       class="p-button-text"
       (click)="saveProduct()"
-    ></button>
+    ></button> -->
   </ng-template>
 </p-dialog>
 

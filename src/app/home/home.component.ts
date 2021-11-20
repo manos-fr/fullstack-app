@@ -69,25 +69,26 @@ export class HomeComponent implements OnInit {
   }
 
   openNew() {
-    this.product = {};
-    this.submitted = false;
-    this.productDialog = true;
+    console.log('Create new');
+    // this.product = {};
+    // this.submitted = false;
+    // this.productDialog = true;
   }
 
-  deleteSelectedProducts() {
+  printSelectedProduct() {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
+      message: 'Are you sure you want to print the selected product?',
       header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
+      icon: 'pi pi-print',
       accept: () => {
-        this.products = this.products.filter(
-          (val) => !this.selectedProducts.includes(val)
-        );
+        // this.products = this.products.filter(
+        //   (val) => !this.selectedProducts.includes(val)
+        // );
         this.selectedProducts = null;
+        console.log('print');
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Products Deleted',
           life: 3000,
         });
       },
