@@ -133,7 +133,7 @@
       </div>
     </ng-template>
     <ng-template pTemplate="header">
-      <tr class="p-selectable-row">
+      <tr>
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
@@ -211,7 +211,7 @@
               p-button-text
               p-button-sm
               p-mr-2
-              p-mb-2
+              p-mb-1
             "
             (click)="editProduct(product)"
           >
@@ -223,7 +223,7 @@
             (click)="loveItem(ri)"
             type="button"
             class="
-              p-button-rounded p-button-danger p-button-text p-button-lg p-mt-2
+              p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1
             "
           >
             <div *ngIf="product.isLoved === true">

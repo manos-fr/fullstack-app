@@ -9,4 +9,7 @@
   position: relative;
   size: 500px; */
   background-color: rgba(0, 23, 99, 0.281);
+  background-image: url('./assets/images/rhcp1.jpg');
+  background-repeat: repeat;
+  background-size: 350px;
 }

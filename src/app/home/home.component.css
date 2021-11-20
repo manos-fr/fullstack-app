@@ -4,9 +4,9 @@
 }
 
 .card-2 {
-  min-width: 400px;
+  min-width: 300px;
   padding: 16px;
-  margin: 16px;
+  margin: 10px;
   border: 1px solid rgba(59, 97, 166, 0.2);
   border-radius: 15px;
   position: relative;
