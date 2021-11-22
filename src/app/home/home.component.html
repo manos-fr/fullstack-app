@@ -1,10 +1,37 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="end">
+    <p-button
+      icon="pi pi-bell"
+      styleClass="p-button-warning p-button-rounded p-button-warning p-button-text p-button-lg p-mr-2"
+      badge="8"
+      badgeClass="p-badge-danger p-mb-2 p-ml-0"
+      (click)="showNotifications()"
+    ></p-button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-heart"
+      class="p-button-rounded p-button-help p-button-text p-button-lg p-mr-2"
+      (click)="navigateToFavorites()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-power-off"
+      (click)="logOut()"
+      class="p-button-rounded p-button-secondary"
+    ></button>
+  </ng-template>
+</p-menubar>
 <div class="card-2">
   <div class="p-d-flex p-flex-column">
     <p-tabView class="vertical">
       <p-tabPanel>
         <ng-template pTemplate="header">
           <i class="pi pi-user"></i>
-          <span class="p-tabview-title p-ml-2"> My Account</span>
+          <span class="p-tabview-title p-ml-2"> My Profile</span>
         </ng-template>
         <div
           class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"

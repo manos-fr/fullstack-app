@@ -8,50 +8,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  displaySideBar;
-
-  items: MenuItem[];
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'File',
-        items: [
-          {
-            label: 'New',
-            icon: 'pi pi-fw pi-plus',
-            items: [{ label: 'Project' }, { label: 'Other' }],
-          },
-          { label: 'HomeScreen', routerLink: '/home' },
-          {
-            label: 'Quit',
-            command: () => {
-              this.router.navigate([`/`]);
-            },
-          },
-        ],
-      },
-      {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-          { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-          { label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
-        ],
-      },
-    ];
-  }
-
-  showNotifications() {
-    console.log('notifications');
-  }
-
-  navigateToFavorites() {
-    console.log('favorites');
-  }
-
-  logOut() {
-    console.log('log out');
-  }
+  ngOnInit() {}
 }

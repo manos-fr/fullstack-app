@@ -5,12 +5,13 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../domain/product';
 import { ProductService } from '../services/productservice';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { Table } from 'primeng/table';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,8 @@ import { Table } from 'primeng/table';
 export class HomeComponent implements OnInit {
   @ViewChild('dt') table: Table | undefined;
 
+  displaySideBar;
+  items: MenuItem[];
   productDialog: boolean;
   subscription: Subscription;
   products: Product[] = [];
@@ -32,12 +35,46 @@ export class HomeComponent implements OnInit {
   loading: boolean;
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     public productService: ProductService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
+    this.items = [
+      {
+        label: 'Home',
+        icon: 'pi pi-fw pi-home',
+        items: [
+          {
+            label: 'HomeScreen',
+            command: () => {
+              let currentUrl = this.router.url;
+              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+              this.router.onSameUrlNavigation = 'reload';
+              this.router.navigate([currentUrl]);
+            },
+          },
+          {
+            label: 'Quit',
+            command: () => {
+              this.router.navigate([`/`]);
+            },
+          },
+        ],
+      },
+      {
+        label: 'Settings',
+        icon: 'pi pi-fw pi-cog',
+        items: [
+          { label: 'Account', icon: 'pi pi-fw pi-user' },
+          { label: 'Privacy', icon: 'pi pi-fw pi-lock' },
+        ],
+      },
+    ];
+
     this.loading = true;
     this.fetchProducts();
     this.statuses = [
@@ -45,6 +82,18 @@ export class HomeComponent implements OnInit {
       { label: 'LOWSTOCK', value: 'lowstock' },
       { label: 'OUTOFSTOCK', value: 'outofstock' },
     ];
+  }
+
+  showNotifications() {
+    console.log('notifications');
+  }
+
+  navigateToFavorites() {
+    console.log('favorites');
+  }
+
+  logOut() {
+    console.log('log out');
   }
 
   loveItem(index) {
