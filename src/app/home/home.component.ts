@@ -69,8 +69,22 @@ export class HomeComponent implements OnInit {
         label: 'Settings',
         icon: 'pi pi-fw pi-cog',
         items: [
-          { label: 'Account', icon: 'pi pi-fw pi-user' },
-          { label: 'Privacy', icon: 'pi pi-fw pi-lock' },
+          {
+            label: 'Account',
+            icon: 'pi pi-fw pi-user',
+            command: () => {
+              console.log('Account settings');
+              // this.router.navigate([`/`]);
+            },
+          },
+          {
+            label: 'Privacy',
+            icon: 'pi pi-fw pi-lock',
+            command: () => {
+              console.log('Privacy Settings');
+              // this.router.navigate([`/`]);
+            },
+          },
         ],
       },
     ];
