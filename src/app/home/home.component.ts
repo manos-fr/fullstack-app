@@ -68,6 +68,10 @@ export class HomeComponent implements OnInit {
     }, 500);
   }
 
+  onSearchFilters() {
+    console.log('search');
+  }
+
   openNew() {
     console.log('Create new');
     // this.product = {};
@@ -77,7 +81,7 @@ export class HomeComponent implements OnInit {
 
   printSelectedProduct() {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to print the selected product?',
+      message: 'Are you sure you want to print the selected tabs?',
       header: 'Confirm',
       icon: 'pi pi-print',
       accept: () => {
@@ -86,6 +90,23 @@ export class HomeComponent implements OnInit {
         // );
         this.selectedProducts = null;
         console.log('print');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          life: 3000,
+        });
+      },
+    });
+  }
+
+  downloadSelectedSong() {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to download the selected tabs?',
+      header: 'Confirm',
+      icon: 'pi pi-download',
+      accept: () => {
+        this.selectedProducts = null;
+        console.log('download');
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',

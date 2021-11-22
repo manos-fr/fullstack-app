@@ -9,20 +9,6 @@
         <div
           class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"
         >
-          <!-- <div
-            class="
-              p-field p-d-none p-d-md-block p-col-12 p-md-7
-              login-image-container
-              p-m-0 p-pb-0
-            "
-            style="height: 100vh"
-          >
-            <img
-              alt="Login Image"
-              class="login-image"
-              src="../../assets/images/diego-catto-DI6ywiG5N0g-unsplash.jpg"
-            />
-          </div> -->
           <div class="p-d-flex p-flex-column p-col-12 p-py-0">
             <div
               class="
@@ -57,6 +43,7 @@
         pButton
         type="button"
         class="p-m-2 p-button-rounded p-button-secondary"
+        (click)="onSearchFilters()"
       >
         <i class="pi pi-search"></i>
       </button>
@@ -91,6 +78,7 @@
       label="Download"
       icon="pi pi-download"
       class="p-button-info p-ml-2"
+      (click)="downloadSelectedSong()"
       [disabled]="!selectedProducts || selectedProducts.length !== 1"
     ></button>
   </ng-template>
@@ -259,29 +247,6 @@
     <div class="rhcp-image p-grid p-col-12 p-d-flex p-flex-column">
       <h4>Give It Away</h4>
       <div class="p-field content">
-        <!-- <label for="name">Name</label>
-        <input
-          type="text"
-          pInputText
-          id="name"
-          name="name"
-          [(ngModel)]="product.name"
-          required
-        />
-        <small class="p-error" *ngIf="submitted && !product.name"
-          >Name is required.</small
-        > -->
-        <!-- <div class="p-field">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          pInputTextarea
-          name="description"
-          [(ngModel)]="product.description"
-          rows="3"
-          cols="20"
-        ></textarea>
-      </div> -->
         <div class="p-col-12 p-sm-10 p-md-12 p-lg-10">
           <pre>
           E--------------------------|-----11------11-------11------11-----11-------|
@@ -302,24 +267,15 @@
       </div>
     </div>
   </ng-template>
-
   <ng-template pTemplate="footer">
     <button
       pButton
       pRipple
-      label="Click here or press Esc"
+      label="Click or Esc"
       icon="pi pi-times"
       class="p-button-text"
       (click)="hideDialog()"
     ></button>
-    <!-- <button
-      pButton
-      pRipple
-      label="Save"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="saveProduct()"
-    ></button> -->
   </ng-template>
 </p-dialog>
 
