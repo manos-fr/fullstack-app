@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Home',
+        label: '',
         icon: 'pi pi-fw pi-home',
         items: [
           {
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         ],
       },
       {
-        label: 'Settings',
+        label: '',
         icon: 'pi pi-fw pi-cog',
         items: [
           {
@@ -107,6 +107,7 @@ export class HomeComponent implements OnInit {
   }
 
   logOut() {
+    this.router.navigate([`/`]);
     console.log('log out');
   }
 

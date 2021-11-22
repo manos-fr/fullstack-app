@@ -2,7 +2,7 @@
   <ng-template pTemplate="end">
     <p-button
       icon="pi pi-bell"
-      styleClass="p-button-warning p-button-rounded p-button-warning p-button-text p-button-lg p-mr-2"
+      styleClass="p-button-warning p-button-rounded p-button-warning p-button-text p-button-lg p-mr-1"
       badge="8"
       badgeClass="p-badge-danger p-mb-2 p-ml-0"
       (click)="showNotifications()"
@@ -30,7 +30,9 @@
     <p-tabView class="vertical">
       <p-tabPanel>
         <ng-template pTemplate="header">
-          <i class="pi pi-user"></i>
+          <p-avatar shape="circle">
+            <i class="pi pi-user"></i>
+          </p-avatar>
           <span class="p-tabview-title p-ml-2"> My Profile</span>
         </ng-template>
         <div
@@ -262,18 +264,19 @@
 <p-dialog
   [(visible)]="productDialog"
   [style]="{ width: '1000px' }"
-  header="Red Hot Chili Peppers - Guitar Tab"
+  [showHeader]="false"
   [modal]="true"
   [draggable]="true"
   [resizable]="true"
+  [maximizable]="true"
   styleClass="p-fluid"
   [breakpoints]="{ '1000px': '85vw' }"
 >
   <ng-template pTemplate="content">
-    <!-- <h4>Give it Away</h4> -->
     <div class="rhcp-image p-grid p-col-12 p-d-flex p-flex-column">
-      <h4>Give It Away</h4>
       <div class="p-field content">
+        <h3>Red Hot Chili Peppers - Give it Away</h3>
+        <h4>Give It Away - Guitar Tab</h4>
         <div class="p-col-12 p-sm-10 p-md-12 p-lg-10">
           <pre>
           E--------------------------|-----11------11-------11------11-----11-------|

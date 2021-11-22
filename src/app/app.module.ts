@@ -26,9 +26,11 @@ import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
+import { AuthComponent } from './auth/auth.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, AuthComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -53,6 +55,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     CardModule,
     ToggleButtonModule,
     SelectButtonModule,
+    AvatarModule,
+    AvatarGroupModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],
