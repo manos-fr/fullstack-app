@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  OnChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../domain/product';
@@ -18,11 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   providers: [ConfirmationService, MessageService, ProductService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('dt') table: Table | undefined;
-
   displaySideBar;
   items: MenuItem[];
   productDialog: boolean;
@@ -36,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     public productService: ProductService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
@@ -122,14 +112,13 @@ export class HomeComponent implements OnInit {
   fetchProducts() {
     this.subscription = this.productService
       .fetchProducts()
-      .pipe(take(2))
+      .pipe(take(1))
       .subscribe((res: any) => {
         this.products = res.data;
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
       });
-    setTimeout(() => {
-      this.table.reset();
-      this.loading = false;
-    }, 500);
   }
 
   onSearchFilters() {
