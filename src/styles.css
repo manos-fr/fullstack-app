@@ -13,3 +13,26 @@
   background-repeat: repeat;
   background-size: 350px;
 }
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 100%;
+}
+
+.card-2 {
+  min-width: 300px;
+  padding: 16px;
+  margin: 10px;
+  border: 1px solid rgba(59, 97, 166, 0.2);
+  border-radius: 15px;
+  position: relative;
+  background-color: rgba(6, 17, 17, 0.918);
+}
+
+.card-1 {
+  border-radius: 15px;
+  background-color: rgba(6, 17, 17, 0.582);
+}

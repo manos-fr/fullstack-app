@@ -1,80 +1,56 @@
-<p>auth works</p>
-<!-- <p-toast></p-toast>
-<div class="p-grid p-fluid p-formgrid light-blue" style="height: 100vh">
-  <div
-    class="
-      p-field p-d-none p-d-md-block p-col-12 p-md-7
-      login-image-container
-      p-m-0 p-pb-0
-    "
-    style="height: 100vh"
-  >
-    <img alt="Login Image" class="login-image" src="assets/login-image.png" />
-  </div>
-  <div class="p-field p-col-12 p-md-5 login-card-container">
-    <div class="card" style="padding-left: 0; padding-right: 0">
-      <div class="p-d-flex" style="position: absolute; height: 0">
-        <div class="parallelogram-left"></div>
-        <div class="parallelogram-right"></div>
+<div class="card-2 p-grid p-fluid p-formgrid" style="height: 100vh">
+  <div class="p-d-flex p-flex-column p-col-10 p-py-0">
+    <form
+      class="p-fluid margin p-col-10 p-pl-6"
+      [formGroup]="loginForm"
+      (ngSubmit)="doUserLogin()"
+    >
+      <div class="p-field p-mb-2">
+        <label for="userName">Username</label>
+        <input
+          id="userName"
+          type="text"
+          pInputText
+          formControlName="userName"
+        />
       </div>
-      <img class="logo" alt="Logo" src="assets/cosmo-logo.png" />
-      <form
-        class="p-fluid margin p-col-10 p-pl-6"
-        [formGroup]="loginForm"
-        (ngSubmit)="doUserLogin()"
-      >
-        <div class="p-field p-mb-2">
-          <label for="userName">Username</label>
-          <input
-            id="userName"
-            type="text"
-            pInputText
-            formControlName="userName"
-          />
-        </div>
-        <div class="p-field password-field p-mb-2">
-          <label for="lastname1">Password</label>
-          <input
-            id="lastname1"
-            [type]="showPassword ? 'text' : 'password'"
-            pInputText
-            formControlName="password"
-          />
-          <i class="pi pi-eye" (click)="toggleShowPassword()"></i>
-          <span
-            class="material-icons p-eye p-mr-2"
-            (click)="toggleShowPassword()"
-            >{{ showPassword ? 'visibility_off' : 'visibility' }}</span
+      <div class="p-field p-mb-2">
+        <label for="lastname1">Password</label>
+        <input
+          id="lastname1"
+          [type]="showPassword ? 'text' : 'password'"
+          pInputText
+          formControlName="password"
+        />
+        <span
+          class="material-icons p-eye p-mr-2"
+          (click)="toggleShowPassword()"
+          >{{ showPassword ? 'visibility_off' : 'visibility' }}</span
+        >
+      </div>
+
+      <div class="p-mt-6 p-mb-1">
+        <button
+          pButton
+          pRipple
+          label="ΣΥΝΔΕΣΗ"
+          type="submit"
+          class="p-button-success p-button-sm p-d-block p-mx-auto"
+        ></button>
+        <div class="p-mt-4 p-mb-4 p-text-center">
+          <a
+            routerLink="/auth/forgot"
+            style="color: #909090"
+            routerLinkActive="active"
+            >Ξέχασα τον κωδικό μου!</a
           >
         </div>
-        <img class="captcha" [src]="captchaImage" *ngIf="captchaImage" />
-        <div *ngIf="captchaImage" class="p-field p-mb-2">
-          <label for="userName">Type the above text here</label>
-          <input
-            id="userName"
-            type="text"
-            pInputText
-            formControlName="captcha"
-          />
-        </div>
-        <div class="p-mt-6 p-mb-1">
-          <button
-            pButton
-            pRipple
-            label="ΣΥΝΔΕΣΗ"
-            type="submit"
-            class="p-button-success p-button-sm p-d-block p-mx-auto"
-          ></button>
-          <div class="p-mt-4 p-mb-4 p-text-center">
-            <a
-              routerLink="/auth/forgot"
-              style="color: #909090"
-              routerLinkActive="active"
-              >Ξέχασα τον κωδικό μου!</a
-            >
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
-</div> -->
+</div>
+
+<div class="card-2">
+  <h5>Show Password</h5>
+  <p-password [(ngModel)]="value" [toggleMask]="true"></p-password>
+</div>

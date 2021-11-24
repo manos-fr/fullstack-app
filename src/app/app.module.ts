@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -29,6 +29,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { AuthComponent } from './auth/auth.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { RouterModule } from '@angular/router';
+import { PasswordModule } from 'primeng/password';
 @NgModule({
   declarations: [AppComponent, HomeComponent, AuthComponent],
   imports: [
@@ -57,6 +59,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     SelectButtonModule,
     AvatarModule,
     AvatarGroupModule,
+    RouterModule,
+    ReactiveFormsModule,
+    PasswordModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],

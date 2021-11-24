@@ -20,10 +20,8 @@ export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean;
   captchaImage: any;
-  constructor() // private router: Router,
-  // private loginService: LoginService,
-  // private route: ActivatedRoute,
-  // private userService: UserService,
+  value: string;
+  constructor() // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
   // private messageService: MessageService,
   // private domSanitizer: DomSanitizer
   {}
@@ -35,7 +33,10 @@ export class AuthComponent implements OnInit {
     //   return;
     //  }
     // })
+    this.initLoginForm();
+  }
 
+  initLoginForm() {
     this.loginForm = new FormGroup({
       userName: new FormControl(''),
       password: new FormControl(''),
@@ -43,38 +44,39 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  // doUserLogin(): void {
-  //   this.loginService.loginUser(this.loginForm.value).subscribe((res: any) => {
-  //     if(res && res.body.captcha) {
-  //       if (this.captchaImage) {
-  //         this.messageService.add({severity: 'error', summary: 'Error', detail: res.body.captchamessage, life: 5000});
-  //       }
-  //       this.captchaImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/png;base64, ' + res.body.captcha);
-  //       return;
-  //     }
-  //     const userDetails = res.body;
-  //     const token = res.headers.get('Authorization');
-  //     this.userService.userDetails = userDetails;
-  //     this.userService.token = token;
-  //     localStorage.userDetails = JSON.stringify(userDetails);
-  //     localStorage.token = token;
-  //     const redirectUrl = this.route.snapshot.queryParamMap.get('redirectUrl')
-  //     if (userDetails.firstLogin) {
-  //       this.router.navigate(['/user-role-management/change-password']);
-  //     }  else if (redirectUrl) {
-  //       this.router.navigate([redirectUrl]);
-  //     } else if (userDetails.customerEnabled) {
-  //       this.router.navigate(['/customer']);
-  //     } else {
-  //       this.router.navigate([`/user-role-management/users`]);
-  //     }
-  //   },
-  //   (err: any) => {
-  //     if(err?.error?.errors) {
-  //       this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error?.errors, life: 5000});
-  //     }
-  //   });
-  // }
+  doUserLogin(): void {
+    console.log('login');
+    // this.loginService.loginUser(this.loginForm.value).subscribe((res: any) => {
+    //   if(res && res.body.captcha) {
+    //     if (this.captchaImage) {
+    //       this.messageService.add({severity: 'error', summary: 'Error', detail: res.body.captchamessage, life: 5000});
+    //     }
+    //     this.captchaImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/png;base64, ' + res.body.captcha);
+    //     return;
+    //   }
+    //   const userDetails = res.body;
+    //   const token = res.headers.get('Authorization');
+    //   this.userService.userDetails = userDetails;
+    //   this.userService.token = token;
+    //   localStorage.userDetails = JSON.stringify(userDetails);
+    //   localStorage.token = token;
+    //   const redirectUrl = this.route.snapshot.queryParamMap.get('redirectUrl')
+    //   if (userDetails.firstLogin) {
+    //     this.router.navigate(['/user-role-management/change-password']);
+    //   }  else if (redirectUrl) {
+    //     this.router.navigate([redirectUrl]);
+    //   } else if (userDetails.customerEnabled) {
+    //     this.router.navigate(['/customer']);
+    //   } else {
+    //     this.router.navigate([`/user-role-management/users`]);
+    //   }
+    // },
+    // (err: any) => {
+    //   if(err?.error?.errors) {
+    //     this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error?.errors, life: 5000});
+    //   }
+    // });
+  }
 
   toggleShowPassword(): void {
     this.showPassword = !this.showPassword;
