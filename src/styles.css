@@ -36,3 +36,10 @@
   border-radius: 15px;
   background-color: rgba(6, 17, 17, 0.582);
 }
+
+.text-danger {
+  color: #b00020;
+}
+.hidden-error {
+  visibility: hidden;
+}

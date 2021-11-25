@@ -1,56 +1,65 @@
-<div class="card-2 p-grid p-fluid p-formgrid" style="height: 100vh">
-  <div class="p-d-flex p-flex-column p-col-10 p-py-0">
-    <form
-      class="p-fluid margin p-col-10 p-pl-6"
-      [formGroup]="loginForm"
-      (ngSubmit)="doUserLogin()"
-    >
-      <div class="p-field p-mb-2">
-        <label for="userName">Username</label>
-        <input
-          id="userName"
-          type="text"
-          pInputText
-          formControlName="userName"
-        />
-      </div>
-      <div class="p-field p-mb-2">
-        <label for="lastname1">Password</label>
-        <input
-          id="lastname1"
-          [type]="showPassword ? 'text' : 'password'"
-          pInputText
-          formControlName="password"
-        />
-        <span
-          class="material-icons p-eye p-mr-2"
-          (click)="toggleShowPassword()"
-          >{{ showPassword ? 'visibility_off' : 'visibility' }}</span
-        >
-      </div>
-
-      <div class="p-mt-6 p-mb-1">
-        <button
-          pButton
-          pRipple
-          label="ΣΥΝΔΕΣΗ"
-          type="submit"
-          class="p-button-success p-button-sm p-d-block p-mx-auto"
-        ></button>
-        <div class="p-mt-4 p-mb-4 p-text-center">
-          <a
-            routerLink="/auth/forgot"
-            style="color: #909090"
-            routerLinkActive="active"
-            >Ξέχασα τον κωδικό μου!</a
-          >
+<div class="space-container"></div>
+<div class="p-d-flex p-col-12">
+  <div class="p-col-4"></div>
+  <div class="login-card p-grid p-fluid p-formgrid p-d-flex p-col-4">
+    <div class="p-d-flex p-flex-column p-col-12">
+      <form
+        class="p-fluid margin p-pl-2"
+        [formGroup]="loginForm"
+        (ngSubmit)="doUserLogin()"
+      >
+        <div class="p-field p-mb-2">
+          <label for="userName">Username</label>
+          <input
+            id="userName"
+            type="text"
+            pInputText
+            formControlName="userName"
+          />
         </div>
-      </div>
-    </form>
-  </div>
-</div>
 
-<div class="card-2">
-  <h5>Show Password</h5>
-  <p-password [(ngModel)]="value" [toggleMask]="true"></p-password>
+        <div *ngIf="!!loginForm.get('password')" class="p-field p-mb-2">
+          <small
+            class="text-danger"
+            [ngClass]="{
+              'hidden-error': !(
+                loginForm.controls.password.invalid &&
+                loginForm.controls.password.touched
+              )
+            }"
+          >
+            Password must be 8-16 characters
+          </small>
+        </div>
+
+        <label for="lastname1">Password</label>
+
+        <p-password
+          formControlName="password"
+          [toggleMask]="true"
+          promptLabel
+        ></p-password>
+        <div class="p-mt-6 p-mb-1">
+          <button
+            pButton
+            pRipple
+            [disabled]="loginForm.controls.password.invalid"
+            label="LOG IN"
+            type="submit"
+            class="p-button-success p-button-sm p-d-block p-mx-auto"
+            routerLink="/home"
+          ></button>
+          <div class="p-mt-4 p-mb-4 p-text-center">
+            <a
+              routerLink="/auth/forgot"
+              style="color: #494949"
+              routerLinkActive="active"
+              >Forgot my password</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="p-col-4"></div>
 </div>

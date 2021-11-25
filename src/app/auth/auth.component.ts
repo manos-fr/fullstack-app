@@ -21,10 +21,7 @@ export class AuthComponent implements OnInit {
   showPassword: boolean;
   captchaImage: any;
   value: string;
-  constructor() // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
-  // private messageService: MessageService,
-  // private domSanitizer: DomSanitizer
-  {}
+  constructor() {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
 
   ngOnInit(): void {
     // this.loginService.getCaptcha().subscribe((res: any) => {
@@ -39,7 +36,10 @@ export class AuthComponent implements OnInit {
   initLoginForm() {
     this.loginForm = new FormGroup({
       userName: new FormControl(''),
-      password: new FormControl(''),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       captcha: new FormControl(''),
     });
   }
