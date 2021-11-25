@@ -92,10 +92,6 @@ export class HomeComponent implements OnInit {
     console.log('notifications');
   }
 
-  navigateToFavorites() {
-    console.log('favorites');
-  }
-
   logOut() {
     this.router.navigate([`/`]);
     console.log('log out');

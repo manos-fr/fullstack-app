@@ -31,8 +31,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { FavoritesComponent } from './home/favorites/favorites.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthComponent],
+  declarations: [AppComponent, HomeComponent, AuthComponent, SignUpComponent, ForgotPasswordComponent, FavoritesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

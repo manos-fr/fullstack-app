@@ -10,6 +10,7 @@ import {
 // import { UserService } from '../../user-role-management/services/user.service';
 import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-auth',
@@ -35,7 +36,10 @@ export class AuthComponent implements OnInit {
 
   initLoginForm() {
     this.loginForm = new FormGroup({
-      userName: new FormControl(''),
+      userName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
@@ -76,6 +80,14 @@ export class AuthComponent implements OnInit {
     //     this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error?.errors, life: 5000});
     //   }
     // });
+  }
+
+  forgotPassword() {
+    console.log('forgot password');
+  }
+
+  signUp() {
+    console.log('sign up');
   }
 
   toggleShowPassword(): void {

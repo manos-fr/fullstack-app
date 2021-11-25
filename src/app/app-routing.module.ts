@@ -2,39 +2,38 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { FavoritesComponent } from './home/favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: 'auth', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: 'home', redirectTo: 'home/main', pathMatch: 'full' },
+
   {
-    path: 'auth/login',
-    component: AuthComponent,
+    path: 'auth',
     // canActivate: [AuthGuardService, CustomerRedirectService],
     children: [
       {
-        path: 'auth/login',
+        path: 'login',
         component: AuthComponent,
-        children: [],
         // canActivate: [PasswordService]
       },
-      // {
-      //   path: 'auth/forgot',
-      //   component: ForgotPasswordComponent,
-      // },
+      {
+        path: 'forgot',
+        component: ForgotPasswordComponent,
+      },
       // {
       //   path: 'auth/password/reset/:token',
       //   component: NewPasswordComponent,
       // },
+
       {
-        path: '*path',
-        redirectTo: 'auth/login',
+        path: 'sign-up',
+        component: SignUpComponent,
       },
-      // {
-      //   path: 'users',
-      //   component: UserListComponent,
-      //   children: [],
-      //   canActivate: [PasswordService]
-      // },
       // {
       //   path: 'roles/:action',
       //   component: RolesListComponent,
@@ -49,7 +48,13 @@ const routes: Routes = [
     ],
   },
 
-  { path: 'home', component: HomeComponent },
+  {
+    path: 'home',
+    children: [
+      { path: 'favorites', component: FavoritesComponent },
+      { path: 'main', component: HomeComponent },
+    ],
+  },
 ];
 
 @NgModule({
