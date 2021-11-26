@@ -35,36 +35,54 @@
           </p-avatar>
           <span class="p-tabview-title p-ml-2"> My Profile</span>
         </ng-template>
-        <div
-          class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"
-        >
-          <div class="p-d-flex p-flex-column p-col-12 p-py-0">
-            <div
-              class="
-                p-field p-d-flex p-flex-column p-col-12 p-lg-8 p-xl-6 p-mt-4
-              "
-            >
-              <input
-                id="contracting"
-                type="text"
-                pInputText
-                placeholder="Name"
-              />
-            </div>
-            <div
-              class="
-                p-field p-d-flex p-flex-column p-col-12 p-lg-8 p-xl-6 p-mb-4
-              "
-            >
-              <input
-                id="contract"
-                type="text"
-                pInputText
-                placeholder="Artist"
-              />
+        <form [formGroup]="searchForm">
+          <div
+            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid"
+          >
+            <div class="p-d-flex p-flex-column p-col-12 p-py-0">
+              <div
+                class="
+                  p-field
+                  p-d-flex
+                  p-flex-column
+                  p-col-12
+                  p-md-8
+                  p-lg-8
+                  p-xl-6
+                  p-mt-4
+                "
+              >
+                <input
+                  formControlName="songName"
+                  id="songName"
+                  type="text"
+                  pInputText
+                  placeholder="Name"
+                />
+              </div>
+              <div
+                class="
+                  p-field
+                  p-d-flex
+                  p-flex-column
+                  p-col-12
+                  p-md-8
+                  p-lg-8
+                  p-xl-6
+                  p-mb-4
+                "
+              >
+                <input
+                  formControlName="artistName"
+                  id="artistName"
+                  type="text"
+                  pInputText
+                  placeholder="Artist"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </p-tabPanel>
     </p-tabView>
     <div class="p-d-flex p-justify-end p-px-2" style="margin-bottom: 1.25rem">
@@ -82,14 +100,7 @@
 
 <p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-3">
   <ng-template pTemplate="left">
-    <button
-      pButton
-      pRipple
-      label="New"
-      icon="pi pi-plus"
-      class="p-button-success p-mr-2"
-      (click)="openNew()"
-    ></button>
+    <h1 class="h1custom p-pr-2"><i>Guitar Tabs App</i></h1>
   </ng-template>
   <ng-template pTemplate="right">
     <button

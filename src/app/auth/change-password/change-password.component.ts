@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,7 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ChangePasswordComponent implements OnInit {
   forgotForm: FormGroup;
-  constructor() {}
+  encryptedOldPassword: any;
+  encryptedNewPassword: any;
+  constructor(private encrService: EncryptService) {}
 
   ngOnInit(): void {
     this.initForgotForm();
@@ -32,6 +35,17 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword(): void {
-    console.log(this.forgotForm.value);
+    this.encryptedOldPassword = this.encrService.set(
+      '123456$#@$^@1ERF',
+      `${this.forgotForm.controls.oldPassword.value}`
+    );
+    this.encryptedNewPassword = this.encrService.set(
+      '123456$#@$^@1ERF',
+      `${this.forgotForm.controls.newPassword.value}`
+    );
+    console.log({
+      encryptedOldPassword: this.encryptedOldPassword,
+      encryptedNewPassword: this.encryptedNewPassword,
+    });
   }
 }

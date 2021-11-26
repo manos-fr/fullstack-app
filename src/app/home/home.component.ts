@@ -6,6 +6,7 @@ import { ProductService } from '../services/productservice';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { Table } from 'primeng/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
   loading: boolean;
+  searchForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -33,6 +35,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initSearchForm();
     this.items = [
       {
         label: '',
@@ -88,6 +91,13 @@ export class HomeComponent implements OnInit {
     ];
   }
 
+  initSearchForm() {
+    this.searchForm = new FormGroup({
+      songName: new FormControl(''),
+      artistName: new FormControl(''),
+    });
+  }
+
   showNotifications() {
     console.log('notifications');
   }
@@ -118,7 +128,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchFilters() {
-    console.log('search');
+    console.log({
+      Song: this.searchForm.controls.songName.value,
+      Artist: this.searchForm.controls.artistName.value,
+    });
   }
 
   openNew() {
