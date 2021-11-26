@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,8 +9,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
+  encryptedPassword: any;
+  decryptedPassword: any;
 
-  constructor() {}
+  constructor(private encrService: EncryptService) {}
 
   ngOnInit(): void {
     this.initSignUpForm();
@@ -27,6 +30,20 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp(): void {
-    console.log(this.signUpForm.value);
+    this.encryptedPassword = this.encrService.set(
+      '123456$#@$^@1ERF',
+      `${this.signUpForm.controls.newPassword.value}`
+    );
+    this.decryptedPassword = this.encrService.get(
+      '123456$#@$^@1ERF',
+      this.encryptedPassword
+    );
+    console.log([
+      {
+        email: this.signUpForm.controls.email.value,
+        username: this.signUpForm.controls.userName.value,
+        encryptedPassword: this.encryptedPassword,
+      },
+    ]);
   }
 }

@@ -32,10 +32,20 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { FavoritesComponent } from './home/favorites/favorites.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { ForgotComponent } from './auth/forgot/forgot.component';
+import { EncryptService } from './services/encrypt.service';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthComponent, SignUpComponent, ForgotPasswordComponent, FavoritesComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AuthComponent,
+    SignUpComponent,
+    ChangePasswordComponent,
+    FavoritesComponent,
+    ForgotComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -66,7 +76,7 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
     ReactiveFormsModule,
     PasswordModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, EncryptService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

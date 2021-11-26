@@ -66,6 +66,9 @@
 .text-danger {
   color: #b00020;
 }
+.text-warning {
+  color: #c2a91ae5;
+}
 .hidden-error {
   visibility: hidden;
 }

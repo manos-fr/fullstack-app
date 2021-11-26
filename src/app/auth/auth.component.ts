@@ -10,7 +10,7 @@ import {
 // import { UserService } from '../../user-role-management/services/user.service';
 import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { EncryptService } from '../services/encrypt.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,7 +20,9 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   captchaImage: any;
-  constructor() {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
+  encryptedPassword: any;
+
+  constructor(private encrService: EncryptService) {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
 
   ngOnInit(): void {
     // this.loginService.getCaptcha().subscribe((res: any) => {
@@ -47,7 +49,14 @@ export class AuthComponent implements OnInit {
   }
 
   doUserLogin(): void {
-    console.log(this.loginForm.value);
+    this.encryptedPassword = this.encrService.set(
+      '123456$#@$^@1ERF',
+      `${this.loginForm.controls.password.value}`
+    );
+    console.log({
+      username: this.loginForm.controls.userName.value,
+      encryptedPassword: this.encryptedPassword,
+    });
     // this.loginService.loginUser(this.loginForm.value).subscribe((res: any) => {
     //   if(res && res.body.captcha) {
     //     if (this.captchaImage) {

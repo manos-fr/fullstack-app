@@ -10,10 +10,10 @@
       Guitar Tabs App
     </h1>
     <div class="p-d-flex p-ai-center">
-      <h2 style="color: #e4e3e3c2">Create Account</h2>
+      <h2 style="color: #e4e3e3c2">Password Reminder</h2>
     </div>
     <div class="p-d-flex p-flex-column p-col-12">
-      <form class="p-fluid margin p-pl-2" [formGroup]="signUpForm">
+      <form class="p-fluid p-pl-2" [formGroup]="sendPasswordForm">
         <div class="p-field p-mb-3">
           <input
             id="email"
@@ -23,32 +23,22 @@
             formControlName="email"
           />
         </div>
-        <div class="p-field p-mb-3">
-          <input
-            id="userName"
-            type="text"
-            pInputText
-            placeholder="Username"
-            formControlName="userName"
-          />
-        </div>
         <div class="p-field p-mb-0 p-d-flex p-flex-column">
           <p-password
-            formControlName="newPassword"
-            [toggleMask]="true"
-            promptLabel
-            placeholder="Set Password"
+            formControlName="otp"
+            placeholder="OTP"
+            [feedback]="false"
           ></p-password>
           <small
-            class="p-error"
+            class="text-warning"
             [ngClass]="{
               'hidden-error': !(
-                signUpForm.controls.newPassword.invalid &&
-                signUpForm.controls.newPassword.touched
+                sendPasswordForm.controls.otp.invalid &&
+                sendPasswordForm.controls.otp.touched
               )
             }"
           >
-            Password must be at least 8 characters
+            Must complete the 6-digit password sent to your email
           </small>
         </div>
         <div class="p-mt-2 p-mb-4">
@@ -56,13 +46,13 @@
             pButton
             pRipple
             [disabled]="
-              signUpForm.controls.newPassword.disabled ||
-              signUpForm.controls.newPassword.invalid ||
-              signUpForm.controls.email.invalid
+              sendPasswordForm.controls.otp.disabled ||
+              sendPasswordForm.controls.otp.invalid ||
+              sendPasswordForm.controls.email.invalid
             "
-            label="Sign Up"
+            label="Send Password"
             type="button"
-            (click)="signUp()"
+            (click)="sendPassword()"
             class="p-button-success p-button-sm p-d-block p-mx-auto"
             routerLink="/auth"
           ></button>

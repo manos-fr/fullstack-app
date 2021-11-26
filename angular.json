@@ -30,7 +30,9 @@
                 "node_modules/material-design-icons/iconfont/material-icons.css",
                 "src/styles.css"
               ],
-              "scripts": []
+              "scripts": [
+                "../node_modules/crypto-js/crypto-js.js"
+              ]
             },
             "configurations": {
               "production": {
@@ -93,7 +95,10 @@
               "styles": [
                 "src/styles.css"
               ],
-              "scripts": [],
+              "scripts": [
+                "../node_modules/crypto-js/crypto-js.js"
+              ],
+              
               "assets": [
                 "src/favicon.ico",
                 "src/assets"

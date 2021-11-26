@@ -60,18 +60,18 @@ export class HomeComponent implements OnInit {
         icon: 'pi pi-fw pi-cog',
         items: [
           {
-            label: 'Account',
-            icon: 'pi pi-fw pi-user',
+            label: 'Change Password',
+            icon: 'pi pi-fw pi-unlock',
             command: () => {
-              console.log('Account settings');
-              // this.router.navigate([`/`]);
+              console.log('Change Password');
+              this.router.navigate([`/auth/change`]);
             },
           },
           {
-            label: 'Privacy',
-            icon: 'pi pi-fw pi-lock',
+            label: 'Toggle Theme',
+            icon: 'pi pi-fw pi-sun',
             command: () => {
-              console.log('Privacy Settings');
+              console.log('Dark/Light mode');
               // this.router.navigate([`/`]);
             },
           },
