@@ -13,7 +13,6 @@
       <h3 style="color: #e4e3e3c2">Sign In or</h3>
       <a
         class="p-ml-1"
-        (click)="signUp()"
         routerLink="/auth/sign-up"
         style="color: #e4e3e3c2"
         routerLinkActive="active"
@@ -21,11 +20,7 @@
       >
     </div>
     <div class="p-d-flex p-flex-column p-col-12">
-      <form
-        class="p-fluid margin p-pl-2"
-        [formGroup]="loginForm"
-        (ngSubmit)="doUserLogin()"
-      >
+      <form class="p-fluid margin p-pl-2" [formGroup]="loginForm">
         <div class="p-field p-mb-3">
           <input
             id="userName"
@@ -69,13 +64,13 @@
               loginForm.controls.userName.invalid
             "
             label="LOGIN"
-            type="submit"
+            type="button"
+            (click)="doUserLogin()"
             class="p-button-success p-button-sm p-d-block p-mx-auto"
             routerLink="/home"
           ></button>
           <div class="p-mt-4 p-mb-3 p-text-center">
             <a
-              (click)="forgotPassword()"
               routerLink="/auth/forgot"
               style="color: #e4e3e3c2"
               routerLinkActive="active"
@@ -84,7 +79,6 @@
           </div>
           <div class="p-mb-2 p-text-center">
             <a
-              (click)="signUp()"
               routerLink="/auth/sign-up"
               style="color: #e4e3e3c2"
               routerLinkActive="active"

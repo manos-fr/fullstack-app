@@ -19,9 +19,7 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 })
 export class AuthComponent implements OnInit {
   loginForm: FormGroup;
-  showPassword: boolean;
   captchaImage: any;
-  value: string;
   constructor() {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
 
   ngOnInit(): void {
@@ -49,7 +47,7 @@ export class AuthComponent implements OnInit {
   }
 
   doUserLogin(): void {
-    console.log('login');
+    console.log(this.loginForm.value);
     // this.loginService.loginUser(this.loginForm.value).subscribe((res: any) => {
     //   if(res && res.body.captcha) {
     //     if (this.captchaImage) {
@@ -80,17 +78,5 @@ export class AuthComponent implements OnInit {
     //     this.messageService.add({severity: 'error', summary: 'Error', detail: err?.error?.errors, life: 5000});
     //   }
     // });
-  }
-
-  forgotPassword() {
-    console.log('forgot password');
-  }
-
-  signUp() {
-    console.log('sign up');
-  }
-
-  toggleShowPassword(): void {
-    this.showPassword = !this.showPassword;
   }
 }

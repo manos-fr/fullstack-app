@@ -1,1 +1,74 @@
-<p>sign-up works!</p>
+<div
+  class="space-container p-d-flex p-ai-top p-jc-top p-justify-top p-col-12"
+></div>
+<div class="p-d-flex p-col-12">
+  <div class="p-col-4"></div>
+  <div
+    class="login-card p-grid p-fluid p-formgrid p-d-flex p-flex-column p-col-4"
+  >
+    <h1 class="h1 p-ai-top p-jc-top p-justify-top p-ml-2 p-pl-4 p-pr-2 p-py-2">
+      Guitar Tabs App
+    </h1>
+    <div class="p-d-flex p-ai-center">
+      <h2 style="color: #e4e3e3c2">Sign Up Now</h2>
+    </div>
+    <div class="p-d-flex p-flex-column p-col-12">
+      <form class="p-fluid margin p-pl-2" [formGroup]="signUpForm">
+        <div class="p-field p-mb-3">
+          <input
+            id="email"
+            type="text"
+            pInputText
+            placeholder="Email"
+            formControlName="email"
+          />
+        </div>
+        <div class="p-field p-mb-3">
+          <input
+            id="userName"
+            type="text"
+            pInputText
+            placeholder="Username"
+            formControlName="userName"
+          />
+        </div>
+        <div class="p-field p-mb-0 p-d-flex p-flex-column">
+          <p-password
+            formControlName="newPassword"
+            [toggleMask]="true"
+            promptLabel
+            placeholder="Set Password"
+          ></p-password>
+          <small
+            class="p-error"
+            [ngClass]="{
+              'hidden-error': !(
+                signUpForm.controls.newPassword.invalid &&
+                signUpForm.controls.newPassword.touched
+              )
+            }"
+          >
+            Password must be at least 8 characters
+          </small>
+        </div>
+        <div class="p-mt-2 p-mb-1">
+          <button
+            pButton
+            pRipple
+            [disabled]="
+              signUpForm.controls.newPassword.disabled ||
+              signUpForm.controls.newPassword.invalid ||
+              signUpForm.controls.email.invalid
+            "
+            label="Sign Up"
+            type="button"
+            (click)="signUp()"
+            class="p-button-success p-button-sm p-d-block p-mx-auto"
+            routerLink="/auth"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="p-col-4"></div>
+</div>
