@@ -40,23 +40,12 @@ export class HomeComponent implements OnInit {
       {
         label: '',
         icon: 'pi pi-fw pi-home',
-        items: [
-          {
-            label: 'HomeScreen',
-            command: () => {
-              let currentUrl = this.router.url;
-              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-              this.router.onSameUrlNavigation = 'reload';
-              this.router.navigate([currentUrl]);
-            },
-          },
-          {
-            label: 'Quit',
-            command: () => {
-              this.router.navigate([`/`]);
-            },
-          },
-        ],
+        command: () => {
+          let currentUrl = this.router.url;
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([currentUrl]);
+        },
       },
       {
         label: '',
