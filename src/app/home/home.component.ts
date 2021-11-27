@@ -87,10 +87,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showNotifications() {
-    console.log('notifications');
-  }
-
   logOut() {
     this.router.navigate([`/`]);
     console.log('log out');

@@ -7,6 +7,7 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ForgotComponent } from './auth/forgot/forgot.component';
+import { NotificationsComponent } from './home/notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const routes: Routes = [
     path: 'home',
     children: [
       { path: 'favorites', component: FavoritesComponent },
+      { path: 'notifications', component: NotificationsComponent },
       { path: 'main', component: HomeComponent },
     ],
   },

@@ -36,6 +36,7 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ForgotComponent } from './auth/forgot/forgot.component';
 import { EncryptService } from './services/encrypt.service';
+import { NotificationsComponent } from './home/notifications/notifications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { EncryptService } from './services/encrypt.service';
     ChangePasswordComponent,
     FavoritesComponent,
     ForgotComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,5 +80,8 @@ import { EncryptService } from './services/encrypt.service';
   ],
   providers: [ProductService, EncryptService],
   bootstrap: [AppComponent],
+  exports: [
+    NotificationsComponent
+  ],
 })
 export class AppModule {}
