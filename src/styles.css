@@ -13,6 +13,34 @@
   background-size: 200px;
   background-repeat: repeat;
 }
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rhcp-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.rhcp-image::before {
+  content: '';
+  background-image: url('./assets/images/red-hot-chili-peppers.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.4;
+}
+
+.content {
+  position: relative;
+  width: fit-content;
+}
+
 .h1 {
   color: #c7c6c6;
   font-family: 'Lato', sans-serif;
