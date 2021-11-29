@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
-import { Product } from '../domain/product';
+import { Notifications, Product } from '../domain/product';
 import { ProductService } from '../services/productservice';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { Table } from 'primeng/table';
@@ -22,10 +22,33 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   product: Product;
   selectedProducts: Product[];
+  selectedNotifications: Notifications[];
   submitted: boolean;
   statuses: any[];
   loading: boolean;
   searchForm: FormGroup;
+  selectedNotification: Notifications;
+
+  notifications: Notifications[] = [
+    {
+      id: '1',
+      description: 'Like',
+      name: 'George',
+      artist: 'Nirvanna',
+    },
+    {
+      id: '2',
+      description: 'Sad',
+      name: 'Manos',
+      artist: 'Foo Fighters',
+    },
+    {
+      id: '3',
+      description: 'Laugh',
+      name: 'Mary',
+      artist: 'Led Zeppelin',
+    },
+  ];
 
   constructor(
     private router: Router,
@@ -241,6 +264,22 @@ export class HomeComponent implements OnInit {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
+  }
+  selectNotification(notification: Notifications) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Notification Selected',
+      detail: notification.name,
+    });
+  }
+
+  onRowSelect(event) {
+    console.log(event.data);
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Notification Selected',
+      detail: event.name,
+    });
   }
 }
 

@@ -11,6 +11,13 @@ export interface Product {
   rating?: number;
   isLoved?: boolean;
 }
+
+export interface Notifications {
+  id?: string;
+  name?: string;
+  description?: string;
+  artist?: string;
+}
 export interface ProductsMapped {
   data: Product[];
 }

@@ -36,7 +36,7 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ForgotComponent } from './auth/forgot/forgot.component';
 import { EncryptService } from './services/encrypt.service';
-import { NotificationsComponent } from './home/notifications/notifications.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,6 @@ import { NotificationsComponent } from './home/notifications/notifications.compo
     ChangePasswordComponent,
     FavoritesComponent,
     ForgotComponent,
-    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,11 +76,9 @@ import { NotificationsComponent } from './home/notifications/notifications.compo
     RouterModule,
     ReactiveFormsModule,
     PasswordModule,
+    OverlayPanelModule,
   ],
   providers: [ProductService, EncryptService],
   bootstrap: [AppComponent],
-  exports: [
-    NotificationsComponent
-  ],
 })
 export class AppModule {}
