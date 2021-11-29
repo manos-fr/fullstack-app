@@ -11,7 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   providers: [ConfirmationService, MessageService, ProductService],
 })
 export class HomeComponent implements OnInit {

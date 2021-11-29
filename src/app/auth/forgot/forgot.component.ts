@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
-  styleUrls: ['./forgot.component.css'],
+  styleUrls: ['./forgot.component.scss'],
 })
 export class ForgotComponent implements OnInit {
   sendPasswordForm: FormGroup;

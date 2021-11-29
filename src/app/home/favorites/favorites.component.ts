@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/productservice';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css'],
+  styleUrls: ['./favorites.component.scss'],
   providers: [ConfirmationService, MessageService, ProductService],
 })
 export class FavoritesComponent implements OnInit {
