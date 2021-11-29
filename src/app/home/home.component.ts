@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
             label: 'Toggle Theme',
             icon: 'pi pi-fw pi-sun',
             command: () => {
-              console.log('Dark/Light mode');
+              this.toggleDarkTheme();
               // this.router.navigate([`/`]);
             },
           },
@@ -101,6 +101,13 @@ export class HomeComponent implements OnInit {
       { label: 'LOWSTOCK', value: 'lowstock' },
       { label: 'OUTOFSTOCK', value: 'outofstock' },
     ];
+  }
+
+  toggleDarkTheme() {
+    console.log('Dark/Light Theme');
+    // document.body.classList.toggle('light-theme');
+    // document.getElementById('.card-2').classList.toggle('light-theme');
+    // document.querySelector('card-2').classList.toggle('light-theme');
   }
 
   initSearchForm() {
