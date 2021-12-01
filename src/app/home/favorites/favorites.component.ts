@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Product } from 'src/app/domain/product';
+import { Notifications, Product } from 'src/app/domain/product';
 import { ProductService } from 'src/app/services/productservice';
 
 @Component({
@@ -25,6 +25,27 @@ export class FavoritesComponent implements OnInit {
   statuses: any[];
   loading: boolean;
   searchForm: FormGroup;
+
+  notifications: Notifications[] = [
+    {
+      id: '1',
+      description: 'Like',
+      name: 'George',
+      artist: 'Nirvanna',
+    },
+    {
+      id: '2',
+      description: 'Sad',
+      name: 'Manos',
+      artist: 'Foo Fighters',
+    },
+    {
+      id: '3',
+      description: 'Laugh',
+      name: 'Mary',
+      artist: 'Led Zeppelin',
+    },
+  ];
 
   constructor(
     private router: Router,
@@ -191,6 +212,24 @@ export class FavoritesComponent implements OnInit {
   //     this.product = {};
   //   }
   // }
+
+  selectNotification(notification: Notifications) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Notification Selected',
+      detail: notification.name,
+    });
+  }
+
+  onRowSelect(event) {
+    console.log(event.data);
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Notification Selected',
+      detail: event.name,
+    });
+  }
+
 
   findIndexById(id: string): number {
     let index = -1;
