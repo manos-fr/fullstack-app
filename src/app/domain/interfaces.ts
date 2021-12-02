@@ -1,4 +1,4 @@
-export interface Product {
+export interface Song {
   id?: string;
   code?: string;
   name?: string;
@@ -18,6 +18,6 @@ export interface Notifications {
   description?: string;
   artist?: string;
 }
-export interface ProductsMapped {
-  data: Product[];
+export interface SongsMapped {
+  data: Song[];
 }

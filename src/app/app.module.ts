@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MenubarModule } from 'primeng/menubar';
-import { ProductService } from './services/productservice';
+import { SongService } from './services/songService';
 import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
 import { TabViewModule } from 'primeng/tabview';
@@ -78,7 +78,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     PasswordModule,
     OverlayPanelModule,
   ],
-  providers: [ProductService, EncryptService],
+  providers: [SongService, EncryptService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

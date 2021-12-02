@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
-import { Notifications, Product } from '../domain/product';
-import { ProductService } from '../services/productservice';
+import { Notifications, Song } from '../domain/interfaces';
+import { SongService } from '../services/songService';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { Table } from 'primeng/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,16 +12,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [ConfirmationService, MessageService, ProductService],
+  providers: [ConfirmationService, MessageService, SongService],
 })
 export class HomeComponent implements OnInit {
   displaySideBar;
   items: MenuItem[];
   productDialog: boolean;
   subscription: Subscription;
-  products: Product[] = [];
-  product: Product;
-  selectedProducts: Product[];
+  songs: Song[] = [];
+  song: Song;
+  selectedSongs: Song[];
   selectedNotifications: Notifications[];
   submitted: boolean;
   statuses: any[];
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public productService: ProductService,
+    public songService: SongService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit {
     ];
 
     this.loading = true;
-    this.fetchProducts();
+    this.fetchSongs();
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
       { label: 'LOWSTOCK', value: 'lowstock' },
@@ -123,19 +123,19 @@ export class HomeComponent implements OnInit {
   }
 
   loveItem(index) {
-    this.products[index].isLoved === false
-      ? (this.products[index].isLoved = true)
-      : (this.products[index].isLoved = false);
-    console.log(this.products[index].isLoved);
-    return this.products[index];
+    this.songs[index].isLoved === false
+      ? (this.songs[index].isLoved = true)
+      : (this.songs[index].isLoved = false);
+    console.log(this.songs[index].isLoved);
+    return this.songs[index];
   }
 
-  fetchProducts() {
-    this.subscription = this.productService
-      .fetchProducts()
+  fetchSongs() {
+    this.subscription = this.songService
+      .fetchSongs()
       .pipe(take(1))
       .subscribe((res: any) => {
-        this.products = res.data;
+        this.songs = res.data;
         setTimeout(() => {
           this.loading = false;
         }, 500);
@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit {
         // this.products = this.products.filter(
         //   (val) => !this.selectedProducts.includes(val)
         // );
-        this.selectedProducts = null;
+        this.selectedSongs = null;
         console.log('print');
         this.messageService.add({
           severity: 'success',
@@ -182,7 +182,7 @@ export class HomeComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-download',
       accept: () => {
-        this.selectedProducts = null;
+        this.selectedSongs = null;
         console.log('download');
         this.messageService.add({
           severity: 'success',
@@ -193,19 +193,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  editProduct(product: Product) {
-    this.product = { ...product };
+  editProduct(song: Song) {
+    this.song = { ...song };
     this.productDialog = true;
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(song: Song) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + product.name + '?',
+      message: 'Are you sure you want to delete ' + song.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter((val) => val.id !== product.id);
-        this.product = {};
+        this.songs = this.songs.filter((val) => val.id !== song.id);
+        this.song = {};
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -224,9 +224,9 @@ export class HomeComponent implements OnInit {
   saveProduct() {
     this.submitted = true;
 
-    if (this.product.name.trim()) {
-      if (this.product.id) {
-        this.products[this.findIndexById(this.product.id)] = this.product;
+    if (this.song.name.trim()) {
+      if (this.song.id) {
+        this.songs[this.findIndexById(this.song.id)] = this.song;
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -234,9 +234,9 @@ export class HomeComponent implements OnInit {
           life: 3000,
         });
       } else {
-        this.product.id = this.createId();
-        this.product.image = 'product-placeholder.svg';
-        this.products.push(this.product);
+        this.song.id = this.createId();
+        this.song.image = 'product-placeholder.svg';
+        this.songs.push(this.song);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -245,16 +245,16 @@ export class HomeComponent implements OnInit {
         });
       }
 
-      this.products = [...this.products];
+      this.songs = [...this.songs];
       this.productDialog = false;
-      this.product = {};
+      this.song = {};
     }
   }
 
   findIndexById(id: string): number {
     let index = -1;
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
+    for (let i = 0; i < this.songs.length; i++) {
+      if (this.songs[i].id === id) {
         index = i;
         break;
       }

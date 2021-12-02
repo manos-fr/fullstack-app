@@ -59,7 +59,7 @@
       icon="pi pi-print"
       class="p-button-secondary"
       (click)="printSelectedProduct()"
-      [disabled]="!selectedProducts || selectedProducts.length !== 1"
+      [disabled]="!selectedSongs || selectedSongs.length !== 1"
     ></button>
     <button
       pButton
@@ -68,14 +68,14 @@
       icon="pi pi-download"
       class="p-button-info p-ml-2"
       (click)="downloadSelectedSong()"
-      [disabled]="!selectedProducts || selectedProducts.length !== 1"
+      [disabled]="!selectedSongs || selectedSongs.length !== 1"
     ></button>
   </ng-template>
 </p-toolbar>
 <div class="card-2">
   <p-table
     #dt
-    [value]="products"
+    [value]="songs"
     [loading]="loading"
     dataKey="id"
     [rows]="10"
@@ -90,7 +90,7 @@
       'representative.name',
       'status'
     ]"
-    [(selection)]="selectedProducts"
+    [(selection)]="selectedSongs"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
   >
@@ -142,39 +142,39 @@
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product let-ri="rowIndex">
-      <tr *ngIf="product.isLoved === true">
+    <ng-template pTemplate="body" let-song let-ri="rowIndex">
+      <tr *ngIf="song.isLoved === true">
         <td>
-          <p-tableCheckbox [value]="product"></p-tableCheckbox>
+          <p-tableCheckbox [value]="songs"></p-tableCheckbox>
         </td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.artist }}</td>
-        <td>{{ product.year }}</td>
+        <td>{{ song.name }}</td>
+        <td>{{ song.artist }}</td>
+        <td>{{ song.year }}</td>
         <td style="min-width: 170px">
           <p-rating
-            [ngModel]="product.rating"
+            [ngModel]="song.rating"
             [readonly]="false"
             [cancel]="false"
           ></p-rating>
         </td>
-        <td [ngSwitch]="product.inventoryStatus">
+        <td [ngSwitch]="song.inventoryStatus">
           <p-badge
             *ngSwitchCase="'CALIFORNICATION'"
-            [value]="product.inventoryStatus"
+            [value]="song.inventoryStatus"
             severity="info"
-            >{{ product.inventoryStatus }}</p-badge
+            >{{ song.inventoryStatus }}</p-badge
           >
           <p-badge
             *ngSwitchCase="'ARCADIUM'"
-            [value]="product.inventoryStatus"
+            [value]="song.inventoryStatus"
             severity="warning"
-            >{{ product.inventoryStatus }}</p-badge
+            >{{ song.inventoryStatus }}</p-badge
           >
           <p-badge
             *ngSwitchCase="'BLOOD SUGAR'"
-            [value]="product.inventoryStatus"
+            [value]="song.inventoryStatus"
             severity="danger"
-            >{{ product.inventoryStatus }}</p-badge
+            >{{ song.inventoryStatus }}</p-badge
           >
         </td>
         <td>
@@ -190,7 +190,7 @@
               p-mr-2
               p-mb-1
             "
-            (click)="editProduct(product)"
+            (click)="editProduct(song)"
           >
             <span class="material-icons">visibility</span>
           </button>
@@ -203,10 +203,10 @@
               p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1
             "
           >
-            <div *ngIf="product.isLoved === true">
+            <div *ngIf="song.isLoved === true">
               <i class="material-icons">favorite</i>
             </div>
-            <div *ngIf="product.isLoved === false">
+            <div *ngIf="song.isLoved === false">
               <i class="material-icons">favorite_border</i>
             </div>
           </button>
@@ -216,7 +216,7 @@
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
         In total there are
-        {{ products ? products.length : 0 }} songs.
+        {{ songs ? songs.length : 0 }} songs.
       </div>
     </ng-template>
   </p-table>

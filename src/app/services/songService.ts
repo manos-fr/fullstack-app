@@ -4,17 +4,17 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { mapData } from '../data.functions';
 
-import { Product, ProductsMapped } from '../domain/product';
+import { SongsMapped } from '../domain/interfaces';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService {
+export class SongService {
   status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
 
   constructor(private http: HttpClient) {}
 
-  fetchProducts(): Observable<ProductsMapped> {
+  fetchSongs(): Observable<SongsMapped> {
     return this.http
-      .get<any>(`assets/data/products.json`)
+      .get<any>(`assets/data/songs.json`)
       .pipe(map((res) => mapData(res)));
   }
 }

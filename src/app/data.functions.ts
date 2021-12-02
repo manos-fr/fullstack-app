@@ -1,8 +1,8 @@
-import { Product, ProductsMapped } from './domain/product';
+import { SongsMapped } from './domain/interfaces';
 import { filter, map, take, tap } from 'rxjs/operators';
 
-export function mapData(res: ProductsMapped) {
-  const newRes: ProductsMapped = {
+export function mapData(res: SongsMapped) {
+  const newRes: SongsMapped = {
     data: res.data.map((item) => ({
       id: item.id,
       code: item.code,

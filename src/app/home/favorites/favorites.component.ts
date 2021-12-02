@@ -4,23 +4,23 @@ import { Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Notifications, Product } from 'src/app/domain/product';
-import { ProductService } from 'src/app/services/productservice';
+import { Notifications, Song } from 'src/app/domain/interfaces';
+import { SongService } from 'src/app/services/songService';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
-  providers: [ConfirmationService, MessageService, ProductService],
+  providers: [ConfirmationService, MessageService, SongService],
 })
 export class FavoritesComponent implements OnInit {
   displaySideBar;
   productDialog: boolean;
   items: MenuItem[];
   subscription: Subscription;
-  products: Product[] = [];
-  product: Product;
-  selectedProducts: Product[];
+  songs: Song[] = [];
+  song: Song;
+  selectedSongs: Song[];
   submitted: boolean;
   statuses: any[];
   loading: boolean;
@@ -49,7 +49,7 @@ export class FavoritesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public productService: ProductService,
+    public songService: SongService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -90,7 +90,7 @@ export class FavoritesComponent implements OnInit {
     ];
 
     this.loading = true;
-    this.fetchProducts();
+    this.fetchSongs();
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
       { label: 'LOWSTOCK', value: 'lowstock' },
@@ -99,19 +99,19 @@ export class FavoritesComponent implements OnInit {
   }
 
   loveItem(index) {
-    this.products[index].isLoved === false
-      ? (this.products[index].isLoved = true)
-      : (this.products[index].isLoved = false);
-    console.log(this.products[index].isLoved);
-    return this.products[index];
+    this.songs[index].isLoved === false
+      ? (this.songs[index].isLoved = true)
+      : (this.songs[index].isLoved = false);
+    console.log(this.songs[index].isLoved);
+    return this.songs[index];
   }
 
-  fetchProducts() {
-    this.subscription = this.productService
-      .fetchProducts()
+  fetchSongs() {
+    this.subscription = this.songService
+      .fetchSongs()
       .pipe(take(1))
       .subscribe((res: any) => {
-        this.products = res.data;
+        this.songs = res.data;
         setTimeout(() => {
           this.loading = false;
         }, 500);
@@ -127,7 +127,7 @@ export class FavoritesComponent implements OnInit {
         // this.products = this.products.filter(
         //   (val) => !this.selectedProducts.includes(val)
         // );
-        this.selectedProducts = null;
+        this.selectedSongs = null;
         console.log('print');
         this.messageService.add({
           severity: 'success',
@@ -144,7 +144,7 @@ export class FavoritesComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-download',
       accept: () => {
-        this.selectedProducts = null;
+        this.selectedSongs = null;
         console.log('download');
         this.messageService.add({
           severity: 'success',
@@ -155,19 +155,19 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-  editProduct(product: Product) {
-    this.product = { ...product };
+  editProduct(product: Song) {
+    this.song = { ...product };
     this.productDialog = true;
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(product: Song) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + product.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter((val) => val.id !== product.id);
-        this.product = {};
+        this.songs = this.songs.filter((val) => val.id !== product.id);
+        this.song = {};
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -230,11 +230,10 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-
   findIndexById(id: string): number {
     let index = -1;
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
+    for (let i = 0; i < this.songs.length; i++) {
+      if (this.songs[i].id === id) {
         index = i;
         break;
       }
