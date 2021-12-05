@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "primeng-quickstart-cli": {
+    "fullstack-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/primeng-quickstart-cli",
+            "outputPath": "dist/fullstack-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "primeng-quickstart-cli:build:production"
+              "browserTarget": "fullstack-app:build:production"
             },
             "development": {
-              "browserTarget": "primeng-quickstart-cli:build:development"
+              "browserTarget": "fullstack-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "primeng-quickstart-cli:build"
+            "browserTarget": "fullstack-app:build"
           }
         },
         "test": {
@@ -122,5 +122,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "primeng-quickstart-cli"
+  "defaultProject": "fullstack-app"
 }

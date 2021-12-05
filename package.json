@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host=0.0.0.0 --port 4201",
     "build": "ng build",
     "start:new": "ng serve --port 4201",
     "test": "ng test",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/primefaces/primeng-quickstart-cli.git"
+    "url": "https://github.com/manos-fr/fullstack-app"
   },
   "dependencies": {
     "@angular/animations": "~12.0.0",
@@ -27,12 +27,15 @@
     "@types/crypto-js": "^4.0.2",
     "angular-material-icons": "^0.7.1",
     "crypto-js": "^4.1.1",
+    "express": "^4.17.1",
     "material-design-icons": "^3.0.1",
     "material-icons": "^1.10.2",
     "primeflex": "2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "~12.1.0",
+    "resolve-url": "^0.2.1",
     "rxjs": "~6.6.0",
+    "uuid": "^7.0.3",
     "web-animations-js": "^2.3.2",
     "zone.js": "^0.11.4"
   },
