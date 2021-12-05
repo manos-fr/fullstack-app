@@ -1,8 +1,61 @@
-# PrimeNG Angular-CLI
+# FullStack App Angular-PrimeNG --> SpringBoot-NodeJS/Postgres-MongoDB
+
+### About
+
+A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, with Spring and NodeJS backend. Work in progress..
+Technologies: **Angular, PrimeNG, Docker**
+
+### Docker & docker-compose install (wsl)
+
+- Git clone
+- Go into the directory
+- Install Docker Engine & Docker Compose
+
+```
+sudo apt-get update
+```
+
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+### Run with Docker
+
+- Start the Docker daemon (if needed)
+
+```
+sudo systemctl start docker or sudo service docker start
+```
+
+```
+docker-compose up -d --build (to run)
+```
+
+in browser: localhost:4201
+
+```
+docker-compose down (to kill and stop docker images)
+```
+
+# Or
+
+- Download or clone the repo
+- Go into the directory
+- You should already have Node.js installed
+- Install the code dependencies with npm install command
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.
 
 ## Development server
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
