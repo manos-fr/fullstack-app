@@ -11,11 +11,11 @@ WORKDIR /ng-app
 
 COPY . .
 
-RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+# RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install --silent
 
-EXPOSE 4201
+RUN npm run ng build -- --prod --output-path=dist --base-href /bo/
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 
 # RUN mkdir -p /app
@@ -25,8 +25,10 @@ CMD ["npm", "start"]
 # RUN npm run ng build -- --output-path=dist --base-href /bo/
 
 # Stage 2
-# FROM nginx:1.14.1-alpine
-# RUN rm -rf /usr/share/nginx/html/*
-# COPY --from=builder /ng-app/dist /usr/share/nginx/html/bo
-# EXPOSE 4000
-# CMD ["nginx", "-g"]
+FROM nginx:1.14.1-alpine
+RUN apk add nano
+COPY nginx/default.conf /etc/nginx/conf.d/
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /ng-app/dist /usr/share/nginx/html/bo
+EXPOSE 4000
+CMD ["nginx", "-g","daemon off;"]
