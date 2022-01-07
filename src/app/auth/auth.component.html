@@ -19,7 +19,11 @@
       >
     </div>
     <div class="p-d-flex p-flex-column p-col-12">
-      <form class="p-fluid margin p-pl-2" [formGroup]="loginForm">
+      <form
+        class="p-fluid margin p-pl-2"
+        [formGroup]="loginForm"
+        (ngSubmit)="doUserLogin()"
+      >
         <div class="p-field p-mb-3">
           <input
             id="userName"
@@ -63,7 +67,7 @@
               loginForm.controls.userName.invalid
             "
             label="LOGIN"
-            type="button"
+            type="submit"
             (click)="doUserLogin()"
             class="p-button-success p-button-sm p-d-block p-mx-auto"
             routerLink="/home/"

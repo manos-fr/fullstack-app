@@ -22,7 +22,7 @@ export class AuthComponent implements OnInit {
   captchaImage: any;
   encryptedPassword: any;
 
-  constructor(private encrService: EncryptService) {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
+  constructor(private encrService: EncryptService, private router: Router) {} // private domSanitizer: DomSanitizer // private messageService: MessageService, // private userService: UserService, // private route: ActivatedRoute, // private loginService: LoginService, // private router: Router,
 
   ngOnInit(): void {
     // this.loginService.getCaptcha().subscribe((res: any) => {
@@ -53,6 +53,7 @@ export class AuthComponent implements OnInit {
       '123456$#@$^@1ERF',
       `${this.loginForm.controls.password.value}`
     );
+    this.router.navigate(['/home/']);
     console.log({
       username: this.loginForm.controls.userName.value,
       encryptedPassword: this.encryptedPassword,
