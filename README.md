@@ -5,6 +5,10 @@
 A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, with Spring and NodeJS backend. Work in progress..
 Technologies: **Angular, PrimeNG, Docker**
 
+## Deployed in Netlify
+
+https://pedantic-hopper-08943a.netlify.app/
+
 ### Docker & docker-compose install (wsl)
 
 - Git clone
@@ -36,10 +40,11 @@ sudo systemctl start docker or sudo service docker start
 ```
 
 ```
-docker-compose up -d --build (to run)
+docker-compose up -d --build (to build & run)
+docker-compose up (to run)
 ```
 
-in browser: localhost:4201
+in browser: http://localhost:4000/bo (served with nginx)
 
 ```
 docker-compose down (to kill and stop docker images)
@@ -50,7 +55,10 @@ docker-compose down (to kill and stop docker images)
 - Download or clone the repo
 - Go into the directory
 - You should already have Node.js installed
-- Install the code dependencies with npm install command
+- Install the code dependencies with npm install --force command
+- npm start to run locally
+
+in browser: http://localhost:4201
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.
 
