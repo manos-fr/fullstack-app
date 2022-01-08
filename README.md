@@ -5,7 +5,7 @@
 A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, with Spring and NodeJS backend. Work in progress..
 Technologies: **Angular, PrimeNG, Docker**
 
-## Deployed in Netlify
+#### Deployed in Netlify
 
 https://pedantic-hopper-08943a.netlify.app/
 
