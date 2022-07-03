@@ -1,4 +1,4 @@
-# FullStack App Angular-PrimeNG --> SpringBoot-NodeJS/Postgres-MongoDB
+# FullStack App Angular-PrimeNG --> Flask-NodeJS/Postgres-MongoDB
 
 ### About
 
