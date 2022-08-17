@@ -63,43 +63,25 @@
           >
             <div class="p-d-flex p-flex-column p-col-12 p-py-0">
               <div
-                class="
-                  p-field
-                  p-d-flex
-                  p-flex-column
-                  p-col-12
-                  p-md-8
-                  p-lg-8
-                  p-xl-6
-                  p-mt-4
-                "
+                class="p-field p-d-flex p-flex-column p-col-12 p-md-8 p-lg-8 p-xl-6 p-mt-4"
               >
                 <input
-                  formControlName="songName"
-                  id="songName"
+                  formControlName="movieTitle"
+                  id="movieTitle"
                   type="text"
                   pInputText
-                  placeholder="Name"
+                  placeholder="Title"
                 />
               </div>
               <div
-                class="
-                  p-field
-                  p-d-flex
-                  p-flex-column
-                  p-col-12
-                  p-md-8
-                  p-lg-8
-                  p-xl-6
-                  p-mb-4
-                "
+                class="p-field p-d-flex p-flex-column p-col-12 p-md-8 p-lg-8 p-xl-6 p-mb-4"
               >
                 <input
-                  formControlName="artistName"
-                  id="artistName"
+                  formControlName="movieId"
+                  id="movieId"
                   type="text"
                   pInputText
-                  placeholder="Artist"
+                  placeholder="Movie Id"
                 />
               </div>
             </div>
@@ -122,7 +104,7 @@
 
 <p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-3">
   <ng-template pTemplate="left">
-    <h1 class="h1custom p-pr-2"><i>Guitar Tabs App</i></h1>
+    <h1 class="h1custom p-pr-2"><i>Imdb</i></h1>
   </ng-template>
   <ng-template pTemplate="right">
     <button
@@ -148,27 +130,23 @@
 <div class="card-2">
   <p-table
     #dt
-    [value]="songs"
+    [value]="data"
     [loading]="loading"
-    dataKey="id"
-    [rows]="10"
+    dataKey="tconst"
+    [rows]="20"
     [paginator]="true"
     responsiveLayout="stack"
     styleClass="p-datatable-sm p-datatable-striped"
-    sortField="name"
-    [globalFilterFields]="[
-      'name',
-      'country.name',
-      'representative.name',
-      'status'
-    ]"
+    sortField="title"
+    [globalFilterFields]="['id', 'genres', 'startyear', 'type']"
     [(selection)]="selectedSongs"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
+    (selectionChange)="onSelectionChange()"
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-flex-wrap p-ai-center p-jc-between">
-        <h4 class="p-ml-4">Songs Results</h4>
+        <h4 class="p-ml-4">Movies Results</h4>
         <span class="p-input-icon-left p-ml-3">
           <i class="pi pi-search"></i>
           <input
@@ -186,23 +164,21 @@
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="name">
-          Name <p-sortIcon field="name"></p-sortIcon>
+        <th>Id</th>
+        <th style="width: 200px" pSortableColumn="originaltitle">
+          Title <p-sortIcon field="originaltitle"></p-sortIcon>
         </th>
-        <th style="width: 200px" pSortableColumn="category">
-          Artist <p-sortIcon field="category"></p-sortIcon>
+        <th style="width: 100px" pSortableColumn="startyear">
+          Year <p-sortIcon field="startyear"></p-sortIcon>
         </th>
-        <th style="width: 100px" pSortableColumn="year">
-          Year <p-sortIcon field="year"></p-sortIcon>
-        </th>
-        <th pSortableColumn="rating">
-          Reviews <p-sortIcon field="rating"></p-sortIcon>
+        <th pSortableColumn="titletype">
+          Type <p-sortIcon field="titletype"></p-sortIcon>
         </th>
         <th>
-          Album
+          Genres
           <p-columnFilter
             type="text"
-            field="inventoryStatus"
+            field="genres"
             display="menu"
             [showOperator]="false"
             [showMatchModes]="false"
@@ -214,55 +190,23 @@
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-song let-ri="rowIndex">
-      <tr>
+    <ng-template pTemplate="body" let-movie let-ri="rowIndex">
+      <tr class="p-selectable-row">
         <td>
-          <p-tableCheckbox [value]="song"></p-tableCheckbox>
+          <p-tableCheckbox [value]="movie"></p-tableCheckbox>
         </td>
-        <td>{{ song.name }}</td>
-        <td>{{ song.artist }}</td>
-        <td>{{ song.year }}</td>
-        <td style="min-width: 170px">
-          <p-rating
-            [ngModel]="song.rating"
-            [readonly]="false"
-            [cancel]="false"
-          ></p-rating>
-        </td>
-        <td [ngSwitch]="song.inventoryStatus">
-          <p-badge
-            *ngSwitchCase="'CALIFORNICATION'"
-            [value]="song.inventoryStatus"
-            severity="info"
-            >{{ song.inventoryStatus }}</p-badge
-          >
-          <p-badge
-            *ngSwitchCase="'ARCADIUM'"
-            [value]="song.inventoryStatus"
-            severity="warning"
-            >{{ song.inventoryStatus }}</p-badge
-          >
-          <p-badge
-            *ngSwitchCase="'BLOOD SUGAR'"
-            [value]="song.inventoryStatus"
-            severity="danger"
-            >{{ song.inventoryStatus }}</p-badge
-          >
-        </td>
+        <td>{{ movie.tconst }}</td>
+        <td>{{ movie.originaltitle }}</td>
+        <td>{{ movie.startyear }}</td>
+        <td>{{ movie.titletype }}</td>
+        <td>{{ movie.genres }}</td>
         <td>
           <button
             pButton
             pRipple
             type="button"
-            class="
-              p-button-rounded
-              p-button-help
-              p-button-text
-              p-button-sm
-              p-mr-2
-              p-mb-1
-            "
-            (click)="editProduct(song)"
+            class="p-button-rounded p-button-help p-button-text p-button-sm p-mr-2 p-mb-1"
+            (click)="editProduct(movie)"
           >
             <span class="material-icons">visibility</span>
           </button>
@@ -271,14 +215,12 @@
             pRipple
             (click)="loveItem(ri)"
             type="button"
-            class="
-              p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1
-            "
+            class="p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1"
           >
-            <div *ngIf="song.isLoved === true">
+            <div *ngIf="movie.isLoved">
               <i class="material-icons">favorite</i>
             </div>
-            <div *ngIf="song.isLoved === false">
+            <div *ngIf="!movie.isLoved">
               <i class="material-icons">favorite_border</i>
             </div>
           </button>
@@ -287,7 +229,7 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
-        In total there are {{ songs ? songs.length : 0 }} songs.
+        In total there are {{ data ? data.length : 0 }} movies.
       </div>
     </ng-template>
   </p-table>

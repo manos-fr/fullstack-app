@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Notifications, Song } from '../domain/interfaces';
 import { SongService } from '../services/songService';
-import { filter, map, take, tap } from 'rxjs/operators';
-import { Table } from 'primeng/table';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +19,7 @@ export class HomeComponent implements OnInit {
   subscription: Subscription;
   songs: Song[] = [];
   song: Song;
-  selectedSongs: Song[];
+  selectedSongs: any;
   selectedNotifications: Notifications[];
   submitted: boolean;
   statuses: any[];
@@ -49,6 +47,7 @@ export class HomeComponent implements OnInit {
       artist: 'Led Zeppelin',
     },
   ];
+  data: any;
 
   constructor(
     private router: Router,
@@ -95,25 +94,25 @@ export class HomeComponent implements OnInit {
     ];
 
     this.loading = true;
-    this.fetchSongs();
-    this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' },
-    ];
+    this.songService.fetchMovies().subscribe((res) => {
+      this.data = res.rows;
+      this.loading = false;
+      console.log(res.rows);
+    });
+  }
+
+  onSelectionChange() {
+    console.log(this.selectedSongs);
   }
 
   toggleDarkTheme() {
     console.log('Dark/Light Theme');
-    // document.body.classList.toggle('light-theme');
-    // document.getElementById('.card-2').classList.toggle('light-theme');
-    // document.querySelector('card-2').classList.toggle('light-theme');
   }
 
   initSearchForm() {
     this.searchForm = new FormGroup({
-      songName: new FormControl(''),
-      artistName: new FormControl(''),
+      movieTitle: new FormControl(null, Validators.required),
+      movieId: new FormControl(null, Validators.required),
     });
   }
 
@@ -123,37 +122,41 @@ export class HomeComponent implements OnInit {
   }
 
   loveItem(index) {
-    this.songs[index].isLoved === false
-      ? (this.songs[index].isLoved = true)
-      : (this.songs[index].isLoved = false);
-    console.log(this.songs[index].isLoved);
-    return this.songs[index];
-  }
-
-  fetchSongs() {
-    this.subscription = this.songService
-      .fetchSongs()
-      .pipe(take(1))
-      .subscribe((res: any) => {
-        this.songs = res.data;
-        setTimeout(() => {
-          this.loading = false;
-        }, 500);
-      });
+    this.data[index].isLoved === false
+      ? (this.data[index].isLoved = true)
+      : (this.data[index].isLoved = false);
+    console.log(this.data[index].isLoved);
+    return this.data[index];
   }
 
   onSearchFilters() {
     console.log({
-      Song: this.searchForm.controls.songName.value,
-      Artist: this.searchForm.controls.artistName.value,
+      Title: this.searchForm.controls.movieTitle.value,
+      Id: this.searchForm.controls.movieId.value,
+    });
+
+    const req = {
+      title: this.searchForm.controls.movieTitle.value,
+      id: this.searchForm.controls.movieId.value,
+    };
+
+    this.loading = true;
+
+    if (req.id) {
+      this.songService.fetchMovieId(req).subscribe((res) => {
+        this.data = res;
+        this.loading = false;
+      });
+      return;
+    }
+    this.songService.fetchMovies().subscribe((res) => {
+      this.data = res.rows;
+      this.loading = false;
     });
   }
 
   openNew() {
     console.log('Create new');
-    // this.product = {};
-    // this.submitted = false;
-    // this.productDialog = true;
   }
 
   printSelectedProduct() {
@@ -162,9 +165,6 @@ export class HomeComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-print',
       accept: () => {
-        // this.products = this.products.filter(
-        //   (val) => !this.selectedProducts.includes(val)
-        // );
         this.selectedSongs = null;
         console.log('print');
         this.messageService.add({
@@ -288,8 +288,4 @@ export class HomeComponent implements OnInit {
       detail: event.name,
     });
   }
-}
-
-function saveProduct() {
-  throw new Error('Function not implemented.');
 }
