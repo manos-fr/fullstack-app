@@ -7,7 +7,7 @@ Technologies: **Angular, PrimeNG, Docker**
 
 #### Deployed in Netlify
 
-https://pedantic-hopper-08943a.netlify.app/
+https://62fea048108b020061b7d99f--courageous-narwhal-01eb81.netlify.app/auth/login
 
 ### Docker & docker-compose install (wsl)
 
