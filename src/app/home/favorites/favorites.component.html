@@ -59,7 +59,7 @@
       icon="pi pi-print"
       class="p-button-secondary"
       (click)="printSelectedProduct()"
-      [disabled]="!selectedSongs || selectedSongs.length !== 1"
+      [disabled]="!selectedMovies || selectedMovies.length !== 1"
     ></button>
     <button
       pButton
@@ -68,7 +68,7 @@
       icon="pi pi-download"
       class="p-button-info p-ml-2"
       (click)="downloadSelectedSong()"
-      [disabled]="!selectedSongs || selectedSongs.length !== 1"
+      [disabled]="!selectedMovies || selectedMovies.length !== 1"
     ></button>
   </ng-template>
 </p-toolbar>
@@ -90,7 +90,7 @@
       'representative.name',
       'status'
     ]"
-    [(selection)]="selectedSongs"
+    [(selection)]="selectedMovies"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
   >
@@ -182,14 +182,7 @@
             pButton
             pRipple
             type="button"
-            class="
-              p-button-rounded
-              p-button-help
-              p-button-text
-              p-button-sm
-              p-mr-2
-              p-mb-1
-            "
+            class="p-button-rounded p-button-help p-button-text p-button-sm p-mr-2 p-mb-1"
             (click)="editProduct(song)"
           >
             <span class="material-icons">visibility</span>
@@ -199,9 +192,7 @@
             pRipple
             (click)="loveItem(ri)"
             type="button"
-            class="
-              p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1
-            "
+            class="p-button-rounded p-button-danger p-button-text p-button-sm p-mt-1"
           >
             <div *ngIf="song.isLoved === true">
               <i class="material-icons">favorite</i>

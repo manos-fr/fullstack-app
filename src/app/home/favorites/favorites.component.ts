@@ -5,13 +5,13 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Notifications, Song } from 'src/app/domain/interfaces';
-import { SongService } from 'src/app/services/songService';
+import { MovieService } from 'src/app/services/movieService';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
-  providers: [ConfirmationService, MessageService, SongService],
+  providers: [ConfirmationService, MessageService, MovieService],
 })
 export class FavoritesComponent implements OnInit {
   displaySideBar;
@@ -20,7 +20,7 @@ export class FavoritesComponent implements OnInit {
   subscription: Subscription;
   songs: Song[] = [];
   song: Song;
-  selectedSongs: Song[];
+  selectedMovies: Song[];
   submitted: boolean;
   statuses: any[];
   loading: boolean;
@@ -49,7 +49,7 @@ export class FavoritesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public songService: SongService,
+    public songService: MovieService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -90,7 +90,7 @@ export class FavoritesComponent implements OnInit {
     ];
 
     this.loading = true;
-    this.fetchSongs();
+    // this.fetchSongs();
     this.statuses = [
       { label: 'INSTOCK', value: 'instock' },
       { label: 'LOWSTOCK', value: 'lowstock' },
@@ -106,17 +106,17 @@ export class FavoritesComponent implements OnInit {
     return this.songs[index];
   }
 
-  fetchSongs() {
-    this.subscription = this.songService
-      .fetchSongs()
-      .pipe(take(1))
-      .subscribe((res: any) => {
-        this.songs = res.data;
-        setTimeout(() => {
-          this.loading = false;
-        }, 500);
-      });
-  }
+  // fetchSongs() {
+  //   this.subscription = this.songService
+  //     .fetchSongs()
+  //     .pipe(take(1))
+  //     .subscribe((res: any) => {
+  //       this.songs = res.data;
+  //       setTimeout(() => {
+  //         this.loading = false;
+  //       }, 500);
+  //     });
+  // }
 
   printSelectedProduct() {
     this.confirmationService.confirm({
@@ -127,7 +127,7 @@ export class FavoritesComponent implements OnInit {
         // this.products = this.products.filter(
         //   (val) => !this.selectedProducts.includes(val)
         // );
-        this.selectedSongs = null;
+        this.selectedMovies = null;
         console.log('print');
         this.messageService.add({
           severity: 'success',
@@ -144,7 +144,7 @@ export class FavoritesComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-download',
       accept: () => {
-        this.selectedSongs = null;
+        this.selectedMovies = null;
         console.log('download');
         this.messageService.add({
           severity: 'success',

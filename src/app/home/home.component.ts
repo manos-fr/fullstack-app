@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { Notifications, Song } from '../domain/interfaces';
-import { SongService } from '../services/songService';
+import { Notifications } from '../domain/interfaces';
+import { MovieService } from '../services/movieService';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -10,22 +10,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [ConfirmationService, MessageService, SongService],
+  providers: [ConfirmationService, MessageService, MovieService],
 })
 export class HomeComponent implements OnInit {
   displaySideBar;
   items: MenuItem[];
   productDialog: boolean;
   subscription: Subscription;
-  songs: Song[] = [];
-  song: Song;
-  selectedSongs: any;
+  selectedMovies: any;
   selectedNotifications: Notifications[];
   submitted: boolean;
   statuses: any[];
   loading: boolean;
   searchForm: FormGroup;
+  updateForm: FormGroup;
   selectedNotification: Notifications;
+  movieUrl = '';
 
   notifications: Notifications[] = [
     {
@@ -51,13 +51,14 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public songService: SongService,
+    public movieService: MovieService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.initSearchForm();
+    this.initUpdateForm();
     this.items = [
       {
         label: '',
@@ -94,7 +95,7 @@ export class HomeComponent implements OnInit {
     ];
 
     this.loading = true;
-    this.songService.fetchMovies().subscribe((res) => {
+    this.movieService.fetchMovies().subscribe((res) => {
       this.data = res.rows;
       this.loading = false;
       console.log(res.rows);
@@ -102,7 +103,17 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectionChange() {
-    console.log(this.selectedSongs);
+    if (this.selectedMovies.length > 0) {
+      this.updateForm.controls.tconst.enable();
+      this.updateForm.controls.originalTitle.enable();
+      this.updateForm.controls.startYear.enable();
+      this.updateForm.controls.genres.enable();
+    } else {
+      this.updateForm.controls.tconst.disable();
+      this.updateForm.controls.originalTitle.disable();
+      this.updateForm.controls.startYear.disable();
+      this.updateForm.controls.genres.disable();
+    }
   }
 
   toggleDarkTheme() {
@@ -111,8 +122,28 @@ export class HomeComponent implements OnInit {
 
   initSearchForm() {
     this.searchForm = new FormGroup({
-      movieTitle: new FormControl(null, Validators.required),
       movieId: new FormControl(null, Validators.required),
+    });
+  }
+
+  initUpdateForm() {
+    this.updateForm = new FormGroup({
+      tconst: new FormControl(
+        { value: null, disabled: true },
+        Validators.required
+      ),
+      originalTitle: new FormControl(
+        { value: null, disabled: true },
+        Validators.required
+      ),
+      startYear: new FormControl(
+        { value: null, disabled: true },
+        Validators.required
+      ),
+      genres: new FormControl(
+        { value: null, disabled: true },
+        Validators.required
+      ),
     });
   }
 
@@ -129,154 +160,125 @@ export class HomeComponent implements OnInit {
     return this.data[index];
   }
 
+  onMovieUrl(e) {
+    this.movieUrl = e.tconst;
+    return this.movieUrl;
+  }
+
   onSearchFilters() {
     console.log({
-      Title: this.searchForm.controls.movieTitle.value,
       Id: this.searchForm.controls.movieId.value,
     });
 
     const req = {
-      title: this.searchForm.controls.movieTitle.value,
       id: this.searchForm.controls.movieId.value,
     };
 
     this.loading = true;
 
     if (req.id) {
-      this.songService.fetchMovieId(req).subscribe((res) => {
+      this.movieService.fetchMovieId(req).subscribe((res) => {
         this.data = res;
         this.loading = false;
       });
       return;
     }
-    this.songService.fetchMovies().subscribe((res) => {
+    this.movieService.fetchMovies().subscribe((res) => {
       this.data = res.rows;
       this.loading = false;
     });
   }
 
-  openNew() {
-    console.log('Create new');
-  }
-
-  printSelectedProduct() {
+  updateSelectedMovie(movie) {
+    const body = {
+      originalTitle: this.updateForm.controls.originalTitle.value,
+      startYear: this.updateForm.controls.startYear.value,
+      genres: this.updateForm.controls.genres.value,
+    };
     this.confirmationService.confirm({
-      message: 'Are you sure you want to print the selected tabs?',
+      message: 'Are you sure you want to update the selected movie?',
       header: 'Confirm',
-      icon: 'pi pi-print',
+      icon: 'pi pi-update',
       accept: () => {
-        this.selectedSongs = null;
-        console.log('print');
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          life: 3000,
-        });
+        this.selectedMovies = [];
+        this.movieService
+          .updateMovieById(movie[0].tconst, body)
+          .subscribe((res) => {
+            if (res) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                life: 3000,
+              });
+              this.loading = true;
+              this.movieService.fetchMovies().subscribe((res) => {
+                this.data = res.rows;
+                this.loading = false;
+                console.log(res.rows);
+              });
+            }
+          });
       },
     });
   }
 
-  downloadSelectedSong() {
+  deleteSelectedMovie(movie) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to download the selected tabs?',
-      header: 'Confirm',
-      icon: 'pi pi-download',
-      accept: () => {
-        this.selectedSongs = null;
-        console.log('download');
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          life: 3000,
-        });
-      },
-    });
-  }
-
-  editProduct(song: Song) {
-    this.song = { ...song };
-    this.productDialog = true;
-  }
-
-  deleteProduct(song: Song) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + song.name + '?',
+      message:
+        'Are you sure you want to delete ' + movie[0].originaltitle + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.songs = this.songs.filter((val) => val.id !== song.id);
-        this.song = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
-          life: 3000,
+        this.selectedMovies = [];
+        this.movieService.deleteMovieById(movie[0].tconst).subscribe((res) => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Movie Deleted',
+              life: 3000,
+            });
+            this.loading = true;
+            this.movieService.fetchMovies().subscribe((res) => {
+              this.data = res.rows;
+              this.loading = false;
+              console.log(res.rows);
+            });
+          }
         });
       },
     });
   }
-
-  hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
-  }
-
-  saveProduct() {
-    this.submitted = true;
-
-    if (this.song.name.trim()) {
-      if (this.song.id) {
-        this.songs[this.findIndexById(this.song.id)] = this.song;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Updated',
-          life: 3000,
+  createMovie() {
+    const body = {
+      tconst: this.updateForm.controls.tconst.value,
+      originalTitle: this.updateForm.controls.originalTitle.value,
+      startYear: this.updateForm.controls.startYear.value,
+      genres: this.updateForm.controls.genres.value,
+    };
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to create the movie?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.selectedMovies = [];
+        this.movieService.createMovie(body).subscribe((res) => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Movie Added',
+              life: 3000,
+            });
+            this.loading = true;
+            this.movieService.fetchMovies().subscribe((res) => {
+              this.data = res.rows;
+              this.loading = false;
+              console.log(res.rows);
+            });
+          }
         });
-      } else {
-        this.song.id = this.createId();
-        this.song.image = 'product-placeholder.svg';
-        this.songs.push(this.song);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Created',
-          life: 3000,
-        });
-      }
-
-      this.songs = [...this.songs];
-      this.productDialog = false;
-      this.song = {};
-    }
-  }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.songs.length; i++) {
-      if (this.songs[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-
-    return index;
-  }
-
-  createId(): string {
-    let id = '';
-    var chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
-  }
-  selectNotification(notification: Notifications) {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Notification Selected',
-      detail: notification.name,
+      },
     });
   }
 

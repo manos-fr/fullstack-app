@@ -1,5 +1,4 @@
 import { SongsMapped } from './domain/interfaces';
-import { filter, map, take, tap } from 'rxjs/operators';
 
 export function mapData(res: SongsMapped) {
   const newRes: SongsMapped = {

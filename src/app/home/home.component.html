@@ -63,18 +63,7 @@
           >
             <div class="p-d-flex p-flex-column p-col-12 p-py-0">
               <div
-                class="p-field p-d-flex p-flex-column p-col-12 p-md-8 p-lg-8 p-xl-6 p-mt-4"
-              >
-                <input
-                  formControlName="movieTitle"
-                  id="movieTitle"
-                  type="text"
-                  pInputText
-                  placeholder="Title"
-                />
-              </div>
-              <div
-                class="p-field p-d-flex p-flex-column p-col-12 p-md-8 p-lg-8 p-xl-6 p-mb-4"
+                class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
               >
                 <input
                   formControlName="movieId"
@@ -85,46 +74,108 @@
                 />
               </div>
             </div>
+            <div class="p-d-flex p-justify-end p-px-2">
+              <button
+                pButton
+                type="button"
+                class="p-m-2 p-button-rounded p-button-secondary"
+                (click)="onSearchFilters()"
+              >
+                <i class="pi pi-search"></i>
+              </button>
+            </div>
           </div>
         </form>
+        <form [formGroup]="updateForm">
+          <div
+            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mt-2"
+          >
+            <div class="p-d-flex p-flex-column p-col-12 p-py-0">
+              <div
+                class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
+              >
+                <input
+                  formControlName="tconst"
+                  id="tconst"
+                  type="text"
+                  pInputText
+                  placeholder="Movie Id"
+                />
+              </div>
+              <div
+                class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
+              >
+                <input
+                  formControlName="originalTitle"
+                  id="originalTitle"
+                  type="text"
+                  pInputText
+                  placeholder="Movie Title"
+                />
+              </div>
+              <div
+                class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
+              >
+                <input
+                  formControlName="startYear"
+                  id="startYear"
+                  type="text"
+                  pInputText
+                  placeholder="Start Year"
+                />
+              </div>
+              <div
+                class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
+              >
+                <input
+                  formControlName="genres"
+                  id="genres"
+                  type="text"
+                  pInputText
+                  placeholder="Genres"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+        <p-toolbar>
+          <ng-template pTemplate="right">
+            <button
+              pButton
+              pRipple
+              label="Create"
+              icon="pi pi-add"
+              class="p-button-secondary p-mr-2"
+              (click)="createMovie()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Update"
+              icon="pi pi-refresh"
+              class="p-button-secondary"
+              (click)="updateSelectedMovie(selectedMovies)"
+              [disabled]="!selectedMovies || selectedMovies.length !== 1"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Delete"
+              icon="pi pi-delete"
+              class="p-button-info p-ml-2"
+              (click)="deleteSelectedMovie(selectedMovies)"
+              [disabled]="!selectedMovies || selectedMovies.length !== 1"
+            ></button>
+          </ng-template>
+        </p-toolbar>
       </p-tabPanel>
     </p-tabView>
-    <div class="p-d-flex p-justify-end p-px-2" style="margin-bottom: 1.25rem">
-      <button
-        pButton
-        type="button"
-        class="p-m-2 p-button-rounded p-button-secondary"
-        (click)="onSearchFilters()"
-      >
-        <i class="pi pi-search"></i>
-      </button>
-    </div>
   </div>
 </div>
 
 <p-toolbar styleClass="p-mb-2 p-ml-3 p-mr-3">
   <ng-template pTemplate="left">
     <h1 class="h1custom p-pr-2"><i>Imdb</i></h1>
-  </ng-template>
-  <ng-template pTemplate="right">
-    <button
-      pButton
-      pRipple
-      label="Print"
-      icon="pi pi-print"
-      class="p-button-secondary"
-      (click)="printSelectedProduct()"
-      [disabled]="!selectedSongs || selectedSongs.length !== 1"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Download"
-      icon="pi pi-download"
-      class="p-button-info p-ml-2"
-      (click)="downloadSelectedSong()"
-      [disabled]="!selectedSongs || selectedSongs.length !== 1"
-    ></button>
   </ng-template>
 </p-toolbar>
 <div class="card-2">
@@ -139,7 +190,7 @@
     styleClass="p-datatable-sm p-datatable-striped"
     sortField="title"
     [globalFilterFields]="['id', 'genres', 'startyear', 'type']"
-    [(selection)]="selectedSongs"
+    [(selection)]="selectedMovies"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
     (selectionChange)="onSelectionChange()"
@@ -167,6 +218,16 @@
         <th>Id</th>
         <th style="width: 200px" pSortableColumn="originaltitle">
           Title <p-sortIcon field="originaltitle"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="originaltitle"
+            display="menu"
+            [showOperator]="false"
+            [showMatchModes]="false"
+            [showAddButton]="false"
+            [hideOnClear]="true"
+            matchMode="startsWith"
+          ></p-columnFilter>
         </th>
         <th style="width: 100px" pSortableColumn="startyear">
           Year <p-sortIcon field="startyear"></p-sortIcon>
@@ -188,6 +249,7 @@
           ></p-columnFilter>
         </th>
         <th></th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-movie let-ri="rowIndex">
@@ -200,15 +262,17 @@
         <td>{{ movie.startyear }}</td>
         <td>{{ movie.titletype }}</td>
         <td>{{ movie.genres }}</td>
+        <td></td>
         <td>
           <button
             pButton
             pRipple
             type="button"
-            class="p-button-rounded p-button-help p-button-text p-button-sm p-mr-2 p-mb-1"
-            (click)="editProduct(movie)"
+            class="p-button-rounded p-button-help p-button-text p-button-sm p-mr-2"
           >
-            <span class="material-icons">visibility</span>
+            <a href="{{ 'https://imdb.com/title/' + onMovieUrl(movie) }}">
+              <span class="material-icons">visibility</span>
+            </a>
           </button>
           <button
             pButton
