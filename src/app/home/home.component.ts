@@ -103,17 +103,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectionChange() {
-    if (this.selectedMovies.length > 0) {
-      this.updateForm.controls.tconst.enable();
-      this.updateForm.controls.originalTitle.enable();
-      this.updateForm.controls.startYear.enable();
-      this.updateForm.controls.genres.enable();
-    } else {
-      this.updateForm.controls.tconst.disable();
-      this.updateForm.controls.originalTitle.disable();
-      this.updateForm.controls.startYear.disable();
-      this.updateForm.controls.genres.disable();
-    }
+    this.updateForm.controls.tconst.patchValue(
+      this.selectedMovies[0] === null ? null : this.selectedMovies[0]?.tconst
+    );
   }
 
   toggleDarkTheme() {
@@ -129,19 +121,19 @@ export class HomeComponent implements OnInit {
   initUpdateForm() {
     this.updateForm = new FormGroup({
       tconst: new FormControl(
-        { value: null, disabled: true },
+        { value: null, disabled: false },
         Validators.required
       ),
       originalTitle: new FormControl(
-        { value: null, disabled: true },
+        { value: null, disabled: false },
         Validators.required
       ),
       startYear: new FormControl(
-        { value: null, disabled: true },
+        { value: null, disabled: false },
         Validators.required
       ),
       genres: new FormControl(
-        { value: null, disabled: true },
+        { value: null, disabled: false },
         Validators.required
       ),
     });
@@ -261,6 +253,9 @@ export class HomeComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        if (!body.tconst || !body.originalTitle) {
+          return;
+        }
         this.selectedMovies = [];
         this.movieService.createMovie(body).subscribe((res) => {
           if (res) {

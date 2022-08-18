@@ -99,7 +99,7 @@
                   id="tconst"
                   type="text"
                   pInputText
-                  placeholder="Movie Id"
+                  placeholder="New Movie Id"
                 />
               </div>
               <div
@@ -110,19 +110,20 @@
                   id="originalTitle"
                   type="text"
                   pInputText
-                  placeholder="Movie Title"
+                  placeholder="New Movie Title"
                 />
               </div>
               <div
                 class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
               >
-                <input
+                <p-inputNumber
+                  [min]="1960"
+                  [max]="2030"
                   formControlName="startYear"
                   id="startYear"
-                  type="text"
-                  pInputText
-                  placeholder="Start Year"
-                />
+                  placeholder="New Start Year"
+                  [format]="false"
+                ></p-inputNumber>
               </div>
               <div
                 class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
@@ -132,7 +133,7 @@
                   id="genres"
                   type="text"
                   pInputText
-                  placeholder="Genres"
+                  placeholder="New Genres"
                 />
               </div>
             </div>
