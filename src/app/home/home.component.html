@@ -259,7 +259,13 @@
           <p-tableCheckbox [value]="movie"></p-tableCheckbox>
         </td>
         <td>{{ movie.tconst }}</td>
-        <td>{{ movie.originaltitle }}</td>
+        <td>
+          {{
+            movie.originaltitle === null
+              ? movie.primarytitle
+              : movie.originaltitle
+          }}
+        </td>
         <td>{{ movie.startyear }}</td>
         <td>{{ movie.titletype }}</td>
         <td>{{ movie.genres }}</td>
