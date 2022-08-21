@@ -9,6 +9,14 @@ Technologies: **Angular, PrimeNG, Docker**
 
 https://luxury-brigadeiros-cad046.netlify.app/
 
+### Deployed express js server in Heroku
+
+- Url to use for endpoints instead of localhost
+
+```
+https://thawing-caverns-10070.herokuapp.com
+```
+
 ### Docker & docker-compose install (wsl)
 
 - Git clone
