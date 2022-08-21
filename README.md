@@ -7,7 +7,7 @@ Technologies: **Angular, PrimeNG, Docker**
 
 #### Deployed in Netlify
 
-https://effervescent-creponne-ca14b9.netlify.app/auth/login
+https://luxury-brigadeiros-cad046.netlify.app/
 
 ### Docker & docker-compose install (wsl)
 
