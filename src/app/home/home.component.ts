@@ -170,7 +170,7 @@ export class HomeComponent implements OnInit {
 
     if (req.id) {
       this.movieService.fetchMovieId(req).subscribe((res) => {
-        this.data = res;
+        this.data = res.rows;
         this.loading = false;
       });
       return;
