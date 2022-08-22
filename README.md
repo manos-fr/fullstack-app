@@ -7,7 +7,7 @@ Technologies: **Angular, PrimeNG, Docker**
 
 #### Deployed in Netlify
 
-https://luxury-brigadeiros-cad046.netlify.app/
+https://pensive-morse-bc4497.netlify.app/home/main
 
 ### Deployed express js server in Heroku
 
