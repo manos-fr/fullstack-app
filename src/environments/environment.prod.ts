@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://thawing-caverns-10070.herokuapp.com',
+  url: 'http://localhost:3000',
 };
