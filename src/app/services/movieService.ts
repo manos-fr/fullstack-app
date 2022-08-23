@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import * as helpers from 'src/app/data.functions';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
@@ -10,14 +12,10 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  // fetchSongs(): Observable<SongsMapped> {
-  //   return this.http
-  //     .get<any>(`assets/data/songs.json`)
-  //     .pipe(map((res) => mapData(res)));
-  // }
-
   fetchMovies(): Observable<any> {
-    return this.http.get<any>(`${this.url}/titles`);
+    return this.http
+      .get<any>(`${this.url}/titles`)
+      .pipe(map((res) => helpers.mapTitles(res)));
   }
   fetchMovieId(req): Observable<any> {
     return this.http.get<any>(`${this.url}/titles/${req.id}`);
