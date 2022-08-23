@@ -21,7 +21,7 @@ export function mapData(res: SongsMapped) {
 
 export function mapTitles(res: any) {
   const newRes: any = {
-    rows: res.rows.map((item) => ({
+    rows: res?.rows?.map((item) => ({
       tconst: item.tconst,
       titletype:
         item.titletype === (null || undefined)

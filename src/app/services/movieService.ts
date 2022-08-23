@@ -18,15 +18,21 @@ export class MovieService {
       .pipe(map((res) => helpers.mapTitles(res)));
   }
   fetchMovieId(req): Observable<any> {
-    return this.http.get<any>(`${this.url}/titles/${req.id}`);
+    return this.http
+      .get<any>(`${this.url}/titles/${req.id}`)
+      .pipe(map((res) => helpers.mapTitles(res)));
   }
   deleteMovieById(req): Observable<any> {
     return this.http.delete<any>(`${this.url}/titles/${req}`);
   }
   updateMovieById(req, body): Observable<any> {
-    return this.http.put<any>(`${this.url}/titles/${req}`, body);
+    return this.http
+      .put<any>(`${this.url}/titles/${req}`, body)
+      .pipe(map((res) => helpers.mapTitles(res)));
   }
   createMovie(body): Observable<any> {
-    return this.http.post<any>(`${this.url}/titles`, body);
+    return this.http
+      .post<any>(`${this.url}/titles`, body)
+      .pipe(map((res) => helpers.mapTitles(res)));
   }
 }
