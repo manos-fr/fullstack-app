@@ -158,10 +158,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchFilters() {
-    console.log({
-      Id: this.searchForm.controls.movieId.value,
-    });
-
     const req = {
       id: this.searchForm.controls.movieId.value,
     };
@@ -175,6 +171,16 @@ export class HomeComponent implements OnInit {
       });
       return;
     }
+    this.movieService.fetchMovies().subscribe((res) => {
+      this.data = res.rows;
+      this.loading = false;
+    });
+  }
+
+  clearFilters() {
+    this.searchForm.reset();
+    this.updateForm.reset();
+    this.loading = true;
     this.movieService.fetchMovies().subscribe((res) => {
       this.data = res.rows;
       this.loading = false;

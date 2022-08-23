@@ -140,7 +140,7 @@
           </div>
         </form>
         <p-toolbar>
-          <ng-template pTemplate="right">
+          <ng-template pTemplate="left">
             <button
               pButton
               pRipple
@@ -166,6 +166,16 @@
               class="p-button-info p-ml-2"
               (click)="deleteSelectedMovie(selectedMovies)"
               [disabled]="!selectedMovies || selectedMovies.length !== 1"
+            ></button>
+          </ng-template>
+          <ng-template pTemplate="right">
+            <button
+              pButton
+              pRipple
+              label="Clear All"
+              icon="pi pi-clear"
+              class="p-button-secondary p-mr-2"
+              (click)="clearFilters()"
             ></button>
           </ng-template>
         </p-toolbar>
