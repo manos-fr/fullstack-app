@@ -209,6 +209,8 @@ export class HomeComponent implements OnInit {
                 life: 3000,
               });
               this.loading = true;
+              this.searchForm.reset();
+              this.updateForm.reset();
               this.movieService.fetchMovies().subscribe((res) => {
                 this.data = res.rows;
                 this.loading = false;
@@ -237,6 +239,8 @@ export class HomeComponent implements OnInit {
               life: 3000,
             });
             this.loading = true;
+            this.searchForm.reset();
+            this.updateForm.reset();
             this.movieService.fetchMovies().subscribe((res) => {
               this.data = res.rows;
               this.loading = false;
