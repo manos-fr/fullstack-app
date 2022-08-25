@@ -89,7 +89,7 @@
         </form>
         <form [formGroup]="updateForm">
           <div
-            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mt-2 p-mb-2"
+            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mt-2"
           >
             <div class="p-d-flex p-flex-column p-col-12 p-py-0">
               <div
@@ -176,48 +176,46 @@
             </div>
           </div>
         </form>
-        <p-toolbar>
-          <ng-template pTemplate="left">
-            <div class="p-flex p-flex-wrap">
-              <button
-                pButton
-                pRipple
-                label="Create"
-                icon="pi pi-add"
-                class="p-button-secondary p-mb-2 p-mr-2"
-                (click)="createMovie()"
-              ></button>
-              <button
-                pButton
-                pRipple
-                label="Update"
-                icon="pi pi-refresh"
-                class="p-button-secondary p-mb-2"
-                (click)="updateSelectedMovie(selectedMovies)"
-                [disabled]="!selectedMovies || selectedMovies.length !== 1"
-              ></button>
-              <button
-                pButton
-                pRipple
-                label="Delete"
-                icon="pi pi-delete"
-                class="p-button-info p-ml-2 p-mr-2 p-mb-2"
-                (click)="deleteSelectedMovie(selectedMovies)"
-                [disabled]="!selectedMovies || selectedMovies.length !== 1"
-              ></button>
-            </div>
-          </ng-template>
-          <ng-template pTemplate="right">
+        <div class="p-d-flex p-col-12 p-flex-wrap p-my-0">
+          <div class="p-col-6 p-d-flex p-flex-wrap">
             <button
               pButton
               pRipple
-              label="Clear All"
-              icon="pi pi-clear"
-              class="p-button-secondary p-mr-2 p-ml-2"
+              label="Create"
+              icon="pi pi-plus"
+              class="p-button-secondary p-m-2 p-p-2"
+              (click)="createMovie()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Update"
+              icon="pi pi-refresh"
+              class="p-button-secondary p-m-2 p-p-2"
+              (click)="updateSelectedMovie(selectedMovies)"
+              [disabled]="!selectedMovies || selectedMovies.length !== 1"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Delete"
+              icon="pi pi-trash"
+              class="p-button-info p-m-2 p-p-2"
+              (click)="deleteSelectedMovie(selectedMovies)"
+              [disabled]="!selectedMovies || selectedMovies.length !== 1"
+            ></button>
+          </div>
+          <div class="p-col-6 p-d-flex p-align-start p-justify-end">
+            <button
+              pButton
+              pRipple
+              label="Clear"
+              icon="pi pi-times"
+              class="p-button-secondary p-m-2 p-p-2"
               (click)="clearFilters()"
             ></button>
-          </ng-template>
-        </p-toolbar>
+          </div>
+        </div>
       </p-tabPanel>
     </p-tabView>
   </div>
