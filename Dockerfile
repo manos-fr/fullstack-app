@@ -15,15 +15,6 @@ COPY . .
 
 RUN npm run ng build -- --prod --output-path=dist --base-href /bo/
 
-# CMD ["npm", "start"]
-
-
-# RUN mkdir -p /app
-# WORKDIR /app
-# COPY . .
-# RUN npm run build --prod
-# RUN npm run ng build -- --output-path=dist --base-href /bo/
-
 # Stage 2
 FROM nginx:1.14.1-alpine
 RUN apk add nano

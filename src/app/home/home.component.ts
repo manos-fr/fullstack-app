@@ -264,6 +264,7 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         if (!body.tconst || !body.originalTitle) {
+          this.updateForm.markAllAsTouched();
           return;
         }
         this.selectedMovies = [];

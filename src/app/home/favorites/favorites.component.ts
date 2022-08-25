@@ -106,18 +106,6 @@ export class FavoritesComponent implements OnInit {
     return this.songs[index];
   }
 
-  // fetchSongs() {
-  //   this.subscription = this.songService
-  //     .fetchSongs()
-  //     .pipe(take(1))
-  //     .subscribe((res: any) => {
-  //       this.songs = res.data;
-  //       setTimeout(() => {
-  //         this.loading = false;
-  //       }, 500);
-  //     });
-  // }
-
   printSelectedProduct() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to print the selected tabs?',
@@ -183,36 +171,6 @@ export class FavoritesComponent implements OnInit {
     this.submitted = false;
   }
 
-  // saveProduct() {
-  //   this.submitted = true;
-
-  //   if (this.product.name.trim()) {
-  //     if (this.product.id) {
-  //       this.products[this.findIndexById(this.product.id)] = this.product;
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         summary: 'Successful',
-  //         detail: 'Product Updated',
-  //         life: 3000,
-  //       });
-  //     } else {
-  //       this.product.id = this.createId();
-  //       this.product.image = 'product-placeholder.svg';
-  //       this.products.push(this.product);
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         summary: 'Successful',
-  //         detail: 'Product Created',
-  //         life: 3000,
-  //       });
-  //     }
-
-  //     this.products = [...this.products];
-  //     this.productDialog = false;
-  //     this.product = {};
-  //   }
-  // }
-
   selectNotification(notification: Notifications) {
     this.messageService.add({
       severity: 'info',
@@ -238,7 +196,6 @@ export class FavoritesComponent implements OnInit {
         break;
       }
     }
-
     return index;
   }
 }

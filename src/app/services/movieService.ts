@@ -4,20 +4,20 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import * as helpers from 'src/app/data.functions';
+import { NewTitle, TitlesMapped } from '../domain/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
-  status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
   url = environment.url;
 
   constructor(private http: HttpClient) {}
 
-  fetchMovies(): Observable<any> {
+  fetchMovies(): Observable<TitlesMapped> {
     return this.http
       .get<any>(`${this.url}/titles`)
       .pipe(map((res) => helpers.mapTitles(res)));
   }
-  fetchMovieId(req): Observable<any> {
+  fetchMovieId(req): Observable<TitlesMapped> {
     return this.http
       .get<any>(`${this.url}/titles/${req.id}`)
       .pipe(map((res) => helpers.mapTitles(res)));
@@ -30,7 +30,7 @@ export class MovieService {
       .put<any>(`${this.url}/titles/${req}`, body)
       .pipe(map((res) => helpers.mapTitles(res)));
   }
-  createMovie(body): Observable<any> {
+  createMovie(body: NewTitle): Observable<any> {
     return this.http
       .post<any>(`${this.url}/titles`, body)
       .pipe(map((res) => helpers.mapTitles(res)));

@@ -1,4 +1,4 @@
-import { SongsMapped } from './domain/interfaces';
+import { SongsMapped, TitlesMapped } from './domain/interfaces';
 
 export function mapData(res: SongsMapped) {
   const newRes: SongsMapped = {
@@ -19,8 +19,8 @@ export function mapData(res: SongsMapped) {
   return newRes;
 }
 
-export function mapTitles(res: any) {
-  const newRes: any = {
+export function mapTitles(res: TitlesMapped) {
+  const newRes: TitlesMapped = {
     rows: res?.rows?.map((item) => ({
       tconst: item.tconst,
       titletype:

@@ -11,6 +11,22 @@ export interface Song {
   rating?: number;
   isLoved?: boolean;
 }
+export interface Title {
+  tconst: string;
+  titletype: string;
+  titleType?: string;
+  originaltitle: string;
+  endYear?: number;
+  startYear?: number;
+  isAdult?: number;
+  originalTitle?: string;
+  primarytitle: string;
+  isadult: number;
+  startyear: number;
+  endyear: number;
+  runtimeminutes: number;
+  genres: string;
+}
 
 export interface Notifications {
   id?: string;
@@ -20,4 +36,13 @@ export interface Notifications {
 }
 export interface SongsMapped {
   data: Song[];
+}
+export interface TitlesMapped {
+  rows: Title[];
+}
+export interface NewTitle {
+  tconst: string;
+  genres: string;
+  startYear: number;
+  originalTitle: string;
 }

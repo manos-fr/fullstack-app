@@ -70,7 +70,7 @@
                   id="movieId"
                   type="text"
                   pInputText
-                  placeholder="Movie Id"
+                  placeholder="Search by movie id"
                 />
               </div>
             </div>
@@ -81,14 +81,15 @@
                 class="p-m-2 p-button-rounded p-button-secondary"
                 (click)="onSearchFilters()"
               >
-                <i class="pi pi-search"></i>
+                Search
+                <i class="p-ml-2 pi pi-search"> </i>
               </button>
             </div>
           </div>
         </form>
         <form [formGroup]="updateForm">
           <div
-            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mt-2"
+            class="card-1 p-d-flex p-flex-wrap p-justify-start p-col-12 p-fluid p-mt-2 p-mb-2"
           >
             <div class="p-d-flex p-flex-column p-col-12 p-py-0">
               <div
@@ -101,6 +102,15 @@
                   pInputText
                   placeholder="New Movie Id"
                 />
+                <small
+                  class="p-error"
+                  *ngIf="
+                    updateForm.controls.tconst.touched &&
+                    updateForm.controls.tconst.errors?.required
+                  "
+                >
+                  New movie id is required
+                </small>
               </div>
               <div
                 class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
@@ -112,6 +122,15 @@
                   pInputText
                   placeholder="New Movie Title"
                 />
+                <small
+                  class="p-error"
+                  *ngIf="
+                    updateForm.controls.originalTitle.touched &&
+                    updateForm.controls.originalTitle.errors?.required
+                  "
+                >
+                  Title is required
+                </small>
               </div>
               <div
                 class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
@@ -124,6 +143,15 @@
                   placeholder="New Start Year"
                   [format]="false"
                 ></p-inputNumber>
+                <small
+                  class="p-error"
+                  *ngIf="
+                    updateForm.controls.startYear.touched &&
+                    updateForm.controls.startYear.errors?.required
+                  "
+                >
+                  Startyear is required
+                </small>
               </div>
               <div
                 class="p-field p-d-flex p-flex-column p-col-10 p-md-6 p-lg-6 p-xl-4 p-mb-4"
@@ -135,38 +163,49 @@
                   pInputText
                   placeholder="New Genres"
                 />
+                <small
+                  class="p-error"
+                  *ngIf="
+                    updateForm.controls.genres.touched &&
+                    updateForm.controls.genres.errors?.required
+                  "
+                >
+                  Genres is required
+                </small>
               </div>
             </div>
           </div>
         </form>
         <p-toolbar>
           <ng-template pTemplate="left">
-            <button
-              pButton
-              pRipple
-              label="Create"
-              icon="pi pi-add"
-              class="p-button-secondary p-mr-2"
-              (click)="createMovie()"
-            ></button>
-            <button
-              pButton
-              pRipple
-              label="Update"
-              icon="pi pi-refresh"
-              class="p-button-secondary"
-              (click)="updateSelectedMovie(selectedMovies)"
-              [disabled]="!selectedMovies || selectedMovies.length !== 1"
-            ></button>
-            <button
-              pButton
-              pRipple
-              label="Delete"
-              icon="pi pi-delete"
-              class="p-button-info p-ml-2"
-              (click)="deleteSelectedMovie(selectedMovies)"
-              [disabled]="!selectedMovies || selectedMovies.length !== 1"
-            ></button>
+            <div class="p-flex p-flex-wrap">
+              <button
+                pButton
+                pRipple
+                label="Create"
+                icon="pi pi-add"
+                class="p-button-secondary p-mb-2 p-mr-2"
+                (click)="createMovie()"
+              ></button>
+              <button
+                pButton
+                pRipple
+                label="Update"
+                icon="pi pi-refresh"
+                class="p-button-secondary p-mb-2"
+                (click)="updateSelectedMovie(selectedMovies)"
+                [disabled]="!selectedMovies || selectedMovies.length !== 1"
+              ></button>
+              <button
+                pButton
+                pRipple
+                label="Delete"
+                icon="pi pi-delete"
+                class="p-button-info p-ml-2 p-mr-2 p-mb-2"
+                (click)="deleteSelectedMovie(selectedMovies)"
+                [disabled]="!selectedMovies || selectedMovies.length !== 1"
+              ></button>
+            </div>
           </ng-template>
           <ng-template pTemplate="right">
             <button
@@ -174,7 +213,7 @@
               pRipple
               label="Clear All"
               icon="pi pi-clear"
-              class="p-button-secondary p-mr-2"
+              class="p-button-secondary p-mr-2 p-ml-2"
               (click)="clearFilters()"
             ></button>
           </ng-template>
@@ -210,7 +249,7 @@
       <div class="p-d-flex p-flex-wrap p-ai-center p-jc-between">
         <h4 class="p-ml-4">Movies Results</h4>
         <span class="p-input-icon-left p-ml-3">
-          <i class="pi pi-search"></i>
+          <i class="pi pi-search"> </i>
           <input
             pInputText
             type="text"
@@ -287,7 +326,10 @@
             type="button"
             class="p-button-rounded p-button-help p-button-text p-button-sm p-mr-2"
           >
-            <a href="{{ 'https://imdb.com/title/' + onMovieUrl(movie) }}">
+            <a
+              href="{{ 'https://imdb.com/title/' + onMovieUrl(movie) }}"
+              target="_blank"
+            >
               <span class="material-icons">visibility</span>
             </a>
           </button>
