@@ -1,9 +1,9 @@
-# FullStack App Angular-PrimeNG --> Flask-NodeJS/Postgres-MongoDB
+# Front end App Angular-PrimeNG
 
 ### About
 
-A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, with Flask and NodeJS backend. Work in progress..
-Technologies: **Angular, PrimeNG, Docker**
+A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, 
+Technologies: **Angular, PrimeNG, Docker, Nginx**
 
 #### Deployed in Netlify
 
