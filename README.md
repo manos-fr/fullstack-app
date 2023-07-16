@@ -2,6 +2,7 @@
 
 ### About
 
+Project for Master degree.
 A mobile-first fully responsive SPA with user login, change password, remind password, CRUD functionalities and notifications, 
 Technologies: **Angular, PrimeNG, Docker, Nginx**
 
